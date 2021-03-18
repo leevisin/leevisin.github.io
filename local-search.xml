@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Ubuntu Install Nvidia Driver</title>
+    <link href="/2021/03/18/Ubuntu-Install-Nvidia-Driver/"/>
+    <url>/2021/03/18/Ubuntu-Install-Nvidia-Driver/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Problem-Restatement"><a href="#Problem-Restatement" class="headerlink" title="Problem Restatement"></a>Problem Restatement</h1><p>  <strong>NVIDIA-SMI has failed because it couldn’t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.</strong></p><span id="more"></span><h3 id="Step1-uninstall-the-old-version-NVIDIA-driver"><a href="#Step1-uninstall-the-old-version-NVIDIA-driver" class="headerlink" title="Step1 uninstall the old version NVIDIA driver"></a>Step1 uninstall the old version NVIDIA driver</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo apt-<span class="hljs-builtin-name">get</span> <span class="hljs-builtin-name">remove</span> --purge nvidia*<br></code></pre></td></tr></table></figure><p>If the above command is not work, you can try the command below which is more effective.</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo <span class="hljs-regexp">/usr/</span>bin/nvidia-uninstall <br></code></pre></td></tr></table></figure><h3 id="Step2-download-the-NVIDIA-driver"><a href="#Step2-download-the-NVIDIA-driver" class="headerlink" title="Step2 download the NVIDIA driver"></a>Step2 download the NVIDIA driver</h3><p>Search your NVIDIA driver by input your computer information in <a href="https://www.nvidia.com/Download/index.aspx?lang=en-us">Nvidia Web</a>.<br>And then download the .run file.</p><h3 id="step3-install-the-NVIDIA-driver"><a href="#step3-install-the-NVIDIA-driver" class="headerlink" title="step3 install the NVIDIA driver"></a>step3 install the NVIDIA driver</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo service lightdm <span class="hljs-built_in">stop</span> <span class="hljs-comment">// Ensure it doesn&#x27;t work, maybe default is stop state.</span><br>sudo sh NVIDIA-Linux-x86_64<span class="hljs-number">-390.77</span>.<span class="hljs-built_in">run</span> <span class="hljs-comment">// Change the filename to what you download</span><br>sudo service lightdm start<br></code></pre></td></tr></table></figure><h2 id="Some-tips-Importanct"><a href="#Some-tips-Importanct" class="headerlink" title="Some tips !Importanct!"></a>Some tips !Importanct!</h2><ul><li>The distribution-provided pre-install script failed! Are you sure you want to continue?  <strong>Choose “yes” to continue.</strong></li><li>Would you like to register the kernel module souces with DKMS? This will allow DKMS to automatically build a new module, if you install a different kernel later? <strong>Choose “no” to continue.</strong></li><li>Nvidia’s 32-bit compatibility libraries? <strong>Choose “no” to continue.</strong></li><li>Would you like to run the nvidia-xconfigutility to automatically update your x configuration so that the NVIDIA x driver will be used when you restart x? Any pre-existing x confile will be backed up.  <strong>Choose “yes” to continue.</strong></li></ul><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><blockquote><p><a href="https://blog.csdn.net/u013832707/article/details/93157805">Ubuntu安装、更新显卡驱动</a><br><a href="https://blog.csdn.net/munan2017/article/details/106884950">linux服务器 更新显卡驱动</a></p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>高级网络编程Thread</title>
     <link href="/2020/11/08/%E9%AB%98%E7%BA%A7%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8BThread/"/>
     <url>/2020/11/08/%E9%AB%98%E7%BA%A7%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8BThread/</url>

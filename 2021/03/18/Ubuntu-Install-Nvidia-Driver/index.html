@@ -15,14 +15,30 @@
   
   <meta name="theme-color" content="#2f4154">
   
-    <meta name="description" content="">
+    <meta name="description" content="Problem Restatement  NVIDIA-SMI has failed because it couldn’t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.">
   
   <meta name="author" content="Leevisin">
   <meta name="keywords" content="">
   
-  <title>Archives - Leevisin&#39;s Blog</title>
+  <title>Ubuntu Install Nvidia Driver - Leevisin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -50,7 +66,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -149,9 +165,46 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Archive">
+            <span class="h2" id="subtitle" title="Ubuntu Install Nvidia Driver">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-18 22:32" pubdate>
+        March 18, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      242 words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      4
+       minutes
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -164,40 +217,99 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">14 posts in total.</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/11/08/%E9%AB%98%E7%BA%A7%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8BThread/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">高级网络编程Thread</span>
-      <time style="float: right;">11-08</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Ubuntu Install Nvidia Driver</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Problem-Restatement"><a href="#Problem-Restatement" class="headerlink" title="Problem Restatement"></a>Problem Restatement</h1><p>  <strong>NVIDIA-SMI has failed because it couldn’t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.</strong></p>
+<span id="more"></span>
 
+<h3 id="Step1-uninstall-the-old-version-NVIDIA-driver"><a href="#Step1-uninstall-the-old-version-NVIDIA-driver" class="headerlink" title="Step1 uninstall the old version NVIDIA driver"></a>Step1 uninstall the old version NVIDIA driver</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo apt-<span class="hljs-builtin-name">get</span> <span class="hljs-builtin-name">remove</span> --purge nvidia*<br></code></pre></td></tr></table></figure>
+<p>If the above command is not work, you can try the command below which is more effective.</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo <span class="hljs-regexp">/usr/</span>bin/nvidia-uninstall <br></code></pre></td></tr></table></figure>
 
+<h3 id="Step2-download-the-NVIDIA-driver"><a href="#Step2-download-the-NVIDIA-driver" class="headerlink" title="Step2 download the NVIDIA driver"></a>Step2 download the NVIDIA driver</h3><p>Search your NVIDIA driver by input your computer information in <a target="_blank" rel="noopener" href="https://www.nvidia.com/Download/index.aspx?lang=en-us">Nvidia Web</a>.<br>And then download the .run file.</p>
+<h3 id="step3-install-the-NVIDIA-driver"><a href="#step3-install-the-NVIDIA-driver" class="headerlink" title="step3 install the NVIDIA driver"></a>step3 install the NVIDIA driver</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo service lightdm <span class="hljs-built_in">stop</span> <span class="hljs-comment">// Ensure it doesn&#x27;t work, maybe default is stop state.</span><br>sudo sh NVIDIA-Linux-x86_64<span class="hljs-number">-390.77</span>.<span class="hljs-built_in">run</span> <span class="hljs-comment">// Change the filename to what you download</span><br>sudo service lightdm start<br></code></pre></td></tr></table></figure>
+<h2 id="Some-tips-Importanct"><a href="#Some-tips-Importanct" class="headerlink" title="Some tips !Importanct!"></a>Some tips !Importanct!</h2><ul>
+<li>The distribution-provided pre-install script failed! Are you sure you want to continue?  <strong>Choose “yes” to continue.</strong></li>
+<li>Would you like to register the kernel module souces with DKMS? This will allow DKMS to automatically build a new module, if you install a different kernel later? <strong>Choose “no” to continue.</strong></li>
+<li>Nvidia’s 32-bit compatibility libraries? <strong>Choose “no” to continue.</strong></li>
+<li>Would you like to run the nvidia-xconfigutility to automatically update your x configuration so that the NVIDIA x driver will be used when you restart x? Any pre-existing x confile will be backed up.  <strong>Choose “yes” to continue.</strong></li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013832707/article/details/93157805">Ubuntu安装、更新显卡驱动</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/munan2017/article/details/106884950">linux服务器 更新显卡驱动</a></p>
+</blockquote>
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/08/%E9%AB%98%E7%BA%A7%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8BThread/">
+                        <span class="hidden-mobile">高级网络编程Thread</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -277,9 +389,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
