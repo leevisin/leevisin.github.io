@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="主要说修饰符的static和final以及Number课件中我不太懂的几个题。">
+  
+  <meta name="author" content="Leevisin">
+  <meta name="keywords" content="">
+  
+  <title>Java 修饰符 与 Number&amp;Math类 - Leevisin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"leevisin.github.io","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":35,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Leevisin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://i.loli.net/2021/03/18/cS3KlBTxnJoumwk.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java 修饰符 与 Number&Math类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-23 23:06" pubdate>
+        April 23, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java 修饰符 与 Number&amp;Math类</h1>
+            
+            <div class="markdown-body">
+              <center>主要说修饰符的static和final以及Number课件中我不太懂的几个题。</center>
+<span id="more"></span>
+
+<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>1.静态变量：</p>
+<p>static关键字用来声明独立于对象的静态变量，无论一个类实例化多少对象，它的静态变量只有一份拷贝。 静态变量也被称为类变量。局部变量不能被声明为 static 变量。<br>换句话说就是用static声明类变量，所有对象里的该变量都一样（<strong>相当于类的全局变量</strong>）</p>
+<p>2.静态方法：</p>
+<p>static关键字用来声明<strong>独立于对象的</strong>静态方法。静态方法不能使用类的非静态变量。静态方法从参数列表得到数据，然后计算这些数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mystery</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mystery</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123; <br>  <span class="hljs-comment">// 这里一定要有static！！</span><br>  <span class="hljs-comment">//要不然会报错：无法从静态上下文中引用非静态 方法 mystery(int,int)</span><br>  <span class="hljs-keyword">if</span>(<span class="hljs-number">0</span>==b)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a + mystery(a, b-<span class="hljs-number">1</span>);<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> x = mystery(<span class="hljs-number">1</span>,<span class="hljs-number">7</span>);<br>    System.out.println(x);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="fianal"><a href="#fianal" class="headerlink" title="fianal"></a>fianal</h2><p>final class 不可被继承<br>final可以用于variables, methods, classes， 限制继承和覆写</p>
+<h2 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h2><p>接口及接口的成员变量和成员方法不能声明为 protected<br>protected对同一包内的类和所有子类可见。</p>
+<h1 id="Number-amp-Math类"><a href="#Number-amp-Math类" class="headerlink" title="Number&amp;Math类"></a>Number&amp;Math类</h1><p>所有的包装类（Integer、Long、Byte、Double、Float、Short）都是抽象类 Number 的子类。<br><img src="https://www.runoob.com/wp-content/uploads/2013/12/number1.png" srcset="/img/loading.gif"></p>
+<h2 id="常用的"><a href="#常用的" class="headerlink" title="常用的"></a>常用的</h2><p>1    xxxValue()<br>将 Number 对象转换为xxx数据类型的值并返回。<br>3    equals()<br>判断number对象是否与参数相等。<br>5    toString()<br>以字符串形式返回值。<br>6    parseInt()<br>将字符串解析为int类型。<br>7    abs()<br>返回参数的绝对值。<br>11    round()<br>它表示四舍五入，算法为 Math.floor(x+0.5)，即将原来的数字加上 0.5 后再向下取整，所以，Math.round(11.5) 的结果为12，Math.round(-11.5) 的结果为-11。<br>12    min()<br>返回两个参数中的最小值。<br>13    max()<br>返回两个参数中的最大值。<br>27    random()<br>返回一个随机数。</p>
+<h2 id="不常用的"><a href="#不常用的" class="headerlink" title="不常用的"></a>不常用的</h2><p>8    ceil()<br>返回大于等于( &gt;= )给定参数的的最小整数，类型为双精度浮点型。<br>9    floor()<br>返回小于等于（&lt;=）给定参数的最大整数 。<br>14    exp()<br>返回自然数底数e的参数次方。<br>15    log()<br>返回参数的自然数底数的对数值。<br>16    pow()<br>返回第一个参数的第二个参数次方。<br>17    sqrt()<br>求参数的算术平方根。<br>18    sin()<br>求指定double类型参数的正弦值。<br>19    cos()<br>求指定double类型参数的余弦值。<br>20    tan()<br>求指定double类型参数的正切值。<br>21    asin()<br>求指定double类型参数的反正弦值。<br>22    acos()<br>求指定double类型参数的反余弦值。<br>23    atan()<br>求指定double类型参数的反正切值。<br>24    atan2()<br>将笛卡尔坐标转换为极坐标，并返回极坐标的角度值。<br>25    toDegrees()<br>将参数转化为角度。<br>26    toRadians()<br>将角度转换为弧度。</p>
+<h1 id="Practice-Exercise-2"><a href="#Practice-Exercise-2" class="headerlink" title="Practice Exercise 2"></a>Practice Exercise 2</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParameterUse</span> </span>&#123;<br>      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> y = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span>[] z = &#123;<span class="hljs-number">2</span>&#125;;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span>[] w = &#123;<span class="hljs-number">3</span>&#125;;<br>        useArgs(x, y, z, w);<br>      &#125;<br>      <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">useArgs</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b,</span></span><br><span class="hljs-function"><span class="hljs-params">                          <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span>[] c, <span class="hljs-keyword">int</span>[] d)</span> </span>&#123;<br>        <span class="hljs-comment">// 输入到useArgs里的就看这个函数的参数就可以了，不用管xyzw</span><br>        <span class="hljs-comment">// a是final，所以a不能被改变，但是b可以，b可以被随意更改</span><br>        a++; <span class="hljs-comment">// Error</span><br>        b++;<br>        b=a;<br>        <span class="hljs-comment">//后面的三个，表示数组c或者d的地址不能改变，但是里面的内容可以改变</span><br>        c[<span class="hljs-number">0</span>]++; <span class="hljs-comment">// Ok</span><br>        d[<span class="hljs-number">0</span>]++; <span class="hljs-comment">// Ok</span><br>        c=d; <span class="hljs-comment">// Error</span><br>      &#125; <br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="有关不可变类的理解"><a href="#有关不可变类的理解" class="headerlink" title="有关不可变类的理解"></a>有关不可变类的理解</h1><p>&emsp;&emsp;不可变类（immutable class）是指当创建了这个类的实例后，就不允许修改它的值了，也就是说一个对象被创建以后，在整个生命周期内，它的成员变量就不能被修改了。有点类似与常量（const）不允许别的程序进行修改。<br>&emsp;&emsp;Java类库中，所有基本类型的包装类都是不可变类（Byte、Boolean、Short、Char、Integer、Float、Long、Double），此外String也是不可变类。<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html">Object也是一个基本类型</a>,他在java.lang.Object里面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">String s = <span class="hljs-string">&quot;Hello&quot;</span>;<br><br>s += <span class="hljs-string">&quot; World&quot;</span>;<br><br>System.out.println(s);<br></code></pre></td></tr></table></figure>
+
+<p>运行结果是：Hello World<br>其实程序是在执行 s += “ World” 时创建了一个新的对象”Hello World”，s指向了这个新建的对象。原来的”Hello”字符串常量在内存中并没有被改变。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Integer a = <span class="hljs-number">1</span>;<br>Integer b = a;<br>b++;<br>System.out.print(a + <span class="hljs-string">&quot; &quot;</span> + b);<br></code></pre></td></tr></table></figure>
+<p>运行结果：1 2<br>上面程序执行完 b++后，由于Integer是不可变类，因此会创建一个新值为2的Integer赋值给b，此时b和a已经没有任何关系。</p>
+<hr>
+<p>参考文献</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-number.html">Java Number &amp; Math 类</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012005549/article/details/82684652">Java基本数据类型以及由不可变类带来的值传递和引用传递的难点分析</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html">Java Object Api</a></p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/19/Machine-Learning-Model-Summary/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Machine Learning Model Summary</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/23/Interface/">
+                        <span class="hidden-mobile">Interface</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

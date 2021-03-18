@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="必须要写点什么才能折叠起来。">
+  
+  <meta name="author" content="Leevisin">
+  <meta name="keywords" content="">
+  
+  <title>Java Week2 Practice - Leevisin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"leevisin.github.io","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":35,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Leevisin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://i.loli.net/2021/03/18/cS3KlBTxnJoumwk.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java Week2 Practice">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-14 22:07" pubdate>
+        April 14, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java Week2 Practice</h1>
+            
+            <div class="markdown-body">
+              <p>必须要写点什么才能折叠起来。</p>
+<span id="more"></span>
+<h1 id="Question1（好）"><a href="#Question1（好）" class="headerlink" title="Question1（好）"></a>Question1（好）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Question1</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span> <span class="hljs-params">(String[] args)</span></span>&#123;<br>    <span class="hljs-comment">// double numbers = &#123;2.5, 6, 2.6, 8.0&#125;;</span><br>    <span class="hljs-keyword">double</span>[] numbers = &#123;<span class="hljs-number">2.5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">8.0</span>&#125;;<br><br>    <span class="hljs-comment">// int[] marks = int[60];</span><br>    <span class="hljs-keyword">int</span>[] marks = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">60</span>];<br><br>    <span class="hljs-comment">// char letters[] = &#123;a, b, c, d, e, f&#125;;</span><br>    <span class="hljs-keyword">char</span>[] letters = &#123;<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;f&#x27;</span>&#125;;<br>    <br>    <span class="hljs-comment">// String[] books = &#123;Java, SQL, PHP&#125;;</span><br>    String[] books = &#123;<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-string">&quot;SQL&quot;</span>, <span class="hljs-string">&quot;PHP&quot;</span>&#125;;<br><br> <br>    <span class="hljs-keyword">char</span> letter = <span class="hljs-string">&#x27;a&#x27;</span>;<br>    <br>  &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="Question2"><a href="#Question2" class="headerlink" title="Question2"></a>Question2</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Out of the range</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test_Q2</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span> <span class="hljs-params">(String[] args)</span></span>&#123;<br>    <span class="hljs-keyword">int</span>[] intArray = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">5</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;=intArray.length; i++)&#123;<br>       intArray[i] = i;<br>    &#125;<br>    System.out.println(intArray);<br><br><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>&emsp;&emsp;会超界导致无法输出，只需要把=去掉就可以了。</p>
+<h1 id="Question3"><a href="#Question3" class="headerlink" title="Question3"></a>Question3</h1><p>&emsp;&emsp;Assume we have a Flowerclass (*), and two of its methods are setColour(String colour)and setHeight(double height). What is wrong with the following code? Explain your answer. </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java">Flower[] f = <span class="hljs-keyword">new</span> Flower[<span class="hljs-number">2</span>];<br>f[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> Flower(); <br>f[<span class="hljs-number">0</span>].setColour(<span class="hljs-string">&quot;Red&quot;</span>); <br>f[<span class="hljs-number">0</span>].setHeight(<span class="hljs-number">4.0</span>); <br>f[<span class="hljs-number">1</span>].setColour(<span class="hljs-string">&quot;Blue&quot;</span>); <br>f[<span class="hljs-number">1</span>].setHeight(<span class="hljs-number">3.5</span>);<br>````<br>&amp;emsp;&amp;emsp;缺少一个 f[<span class="hljs-number">1</span>] = <span class="hljs-keyword">new</span> Flower(); <br># Question4<br>&amp;emsp;&amp;emsp;<span class="hljs-function">Assume we have a <span class="hljs-title">Flowerclass</span> <span class="hljs-params">(\*)</span>, and two of its methods are <span class="hljs-title">setColour</span><span class="hljs-params">(String colour)</span>and <span class="hljs-title">setHeight</span><span class="hljs-params">(<span class="hljs-keyword">double</span> height)</span>. What is wrong with the following code? Explain your answer.</span><br><span class="hljs-function">```java</span><br><span class="hljs-function">Flower[] f </span>= <span class="hljs-keyword">new</span> Flower[<span class="hljs-number">2</span>]; <br>f[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> Flower(); <br>f[<span class="hljs-number">0</span>].setColour(<span class="hljs-string">&quot;Red&quot;</span>); <br>f[<span class="hljs-number">0</span>].setHeight(<span class="hljs-number">4.0</span>); <br>f[<span class="hljs-number">1</span>] = <span class="hljs-keyword">new</span> Flower(); <br>f[<span class="hljs-number">1</span>].setColour(<span class="hljs-string">&quot;Blue&quot;</span>); <br>f[<span class="hljs-number">1</span>].setHeight(<span class="hljs-number">3.5</span>); f[<span class="hljs-number">2</span>] = <span class="hljs-keyword">new</span> Flower();      <br>f[<span class="hljs-number">2</span>].setColour(<span class="hljs-string">&quot;Pink&quot;</span>); <br>f[<span class="hljs-number">2</span>].setHeight(<span class="hljs-number">2.5</span>);<br></code></pre></td></tr></table></figure>
+<p>&emsp;&emsp;同上，也是超界，把2改成3就对了。</p>
+<h1 id="Question5（好）"><a href="#Question5（好）" class="headerlink" title="Question5（好）"></a>Question5（好）</h1><p>Assume we have a Flowerclass (*), and two of its methods are setColour(String colour)and setHeight(double height). What is wrong with the following code? Explain your answer.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-comment">//No initialize i</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test_Q5</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span> <span class="hljs-params">(String[] args)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> i;<br>    i = i + <span class="hljs-number">5</span>;<br>    System.out.println(<span class="hljs-string">&quot;i = &quot;</span> + i);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>&ensp;&ensp;Local Variables are not given a defined value! Instance variables are.<br>&emsp;&emsp;可以 int i = 0;</p>
+<h1 id="Question7（好）"><a href="#Question7（好）" class="headerlink" title="Question7（好）"></a>Question7（好）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square_Q7a</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123; <span class="hljs-keyword">return</span> x*x; &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> y)</span> </span>&#123; <span class="hljs-keyword">return</span> y*y; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>&emsp;&emsp;问题：square(int)已经被定义过一次了，所以不能被重复定义，可以改成public double square(double y) { return y*y; }</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square_Q7b</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123; <span class="hljs-keyword">return</span> x*x; &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-keyword">double</span> y)</span> </span>&#123; <span class="hljs-keyword">return</span> y*y; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>&emsp;&emsp;莫得问题！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square_Q7c</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123; <span class="hljs-keyword">return</span> x*x; &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-keyword">double</span> y)</span> </span>&#123; <span class="hljs-keyword">return</span> y*y; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>&emsp;&emsp;转化会有损失精度问题，直接下下面的int改成double就可以了。</p>
+<h1 id="Question8"><a href="#Question8" class="headerlink" title="Question8"></a>Question8</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> </span>&#123; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m1</span><span class="hljs-params">()</span> </span>&#123; System.out.println(<span class="hljs-string">&quot;car 1&quot;</span>); &#125; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m2</span><span class="hljs-params">()</span> </span>&#123; System.out.println(<span class="hljs-string">&quot;car 2&quot;</span>); &#125; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;vroom&quot;</span>; &#125; &#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Truck</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Car</span> </span>&#123; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m1</span><span class="hljs-params">()</span> </span>&#123; System.out.println(<span class="hljs-string">&quot;truck 1&quot;</span>); &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Truck mycar= <span class="hljs-keyword">new</span> Truck(); <br>System.out.println(mycar); <br>mycar.m1(); mycar.m2(); <br></code></pre></td></tr></table></figure>
+<p>输出内容：<br>vroom<br>truck 1<br>car 2</p>
+<h1 id="Question9"><a href="#Question9" class="headerlink" title="Question9"></a>Question9</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> </span>&#123; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m1</span><span class="hljs-params">()</span></span>&#123; System.out.println(<span class="hljs-string">&quot;car 1&quot;</span>); &#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m2</span><span class="hljs-params">()</span></span>&#123; System.out.println(<span class="hljs-string">&quot;car 2&quot;</span>); &#125; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;vroom&quot;</span>; &#125; &#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Truck</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Car</span> </span>&#123; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m1</span><span class="hljs-params">()</span> </span>&#123; System.out.println(<span class="hljs-string">&quot;truck 1&quot;</span>); &#125; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m2</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">super</span>.m1(); &#125; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.toString()+ <span class="hljs-string">&quot;T&quot;</span>; &#125; <br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Truck mycar= <span class="hljs-keyword">new</span> Truck(); <br>System.out.println(mycar); <br>mycar.m1(); <br>mycar.m2(); <br></code></pre></td></tr></table></figure>
+<p>输出内容：<br>vroomT<br>truck 1<br>car 1</p>
+<h1 id="Question10"><a href="#Question10" class="headerlink" title="Question10"></a>Question10</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test_Q10</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span> <span class="hljs-params">(String[] args)</span></span>&#123;<br>    String s = <span class="hljs-string">&quot;6&quot;</span>;<br>    <span class="hljs-keyword">int</span> n = <span class="hljs-number">3</span>;<br>    <span class="hljs-keyword">double</span> d = <span class="hljs-number">4.5</span>;<br>    System.out.println(s + n + d);<br><br>  &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>输出内容：634.5</p>
+<h1 id="Question11"><a href="#Question11" class="headerlink" title="Question11"></a>Question11</h1><p>Identify which statements are TRUE and which are FALSE. Justify your answers.<br>1.subclass has direct access to its superclass’ private data and   methods.<br>2.A class can extend more than one superclass.<br>3.An abstract class must contain at least one abstract method.<br>4.An abstract class must not contain any instance variables.</p>
+<p>1:错 不能继承private，只能继承protected和public<br>2:错 一个类不能继承多个父类，但是多个类可以继承一个类，这个Java继承里面有写<br>3:错 可以不包含任何抽象的方法以及变量，只是因为它是一个抽象，必须要事例<br>4:错 可以包含常量</p>
+<h1 id="Question12"><a href="#Question12" class="headerlink" title="Question12"></a>Question12</h1><p>A class Animalhas a subclass Dog. Which of the following is TRUE?<br>a)     Dog cannot have subclasses.<br>b)   Dog has no other parent than Animal.<br>c)   Animal can have only one subclass.<br>d)   Dog cannot have siblings.<br>答案： b<br>解析：a)狗可以有子类，比如母狗，公狗等。<br>    c)动物可以分子类，比如猫，兔子等<br>    d)狗也可以有兄弟姐妹，比如上面说的猫和兔子</p>
+<h1 id="Question13"><a href="#Question13" class="headerlink" title="Question13"></a>Question13</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test_Q13a</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span> <span class="hljs-params">(String[] args)</span></span>&#123;<br>    String s1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;aaa&quot;</span>);<br>    String s2 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;aaa&quot;</span>);<br>    System.out.println(s1==s2);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>false</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test_Q13b</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span> <span class="hljs-params">(String[] args)</span></span>&#123;<br>    String s1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;aaa&quot;</span>);<br>    String s2 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;aaa&quot;</span>);<br>    System.out.println(s1.equals(s2));<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>true</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test_Q13c</span></span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span> <span class="hljs-params">(String[] args)</span></span>&#123;<br>    String s1 = <span class="hljs-string">&quot;aaa&quot;</span>;<br>    String s2 = <span class="hljs-string">&quot;aaa&quot;</span>;<br>    System.out.println(s1==s2);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>true</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/23/Interface/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Interface</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/12/Java%E7%BB%A7%E6%89%BF/">
+                        <span class="hidden-mobile">Java继承(Inheritance)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

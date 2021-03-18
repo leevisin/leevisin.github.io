@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="&amp;emsp;&amp;emsp;结构是c语言中比较重要的一部分，但是我的使用频率不高，为了防止遗忘，就写了这篇。不要说我能不用结构就不用结构，每个事物的存在都有其必然性，在你需要的时候你就会想起它啦！&amp;emsp;&amp;emsp;如果有很多个结构，比较容易搞混，尤其是结构带着数组、指针，再写在函数里面就更热闹了。下面这个图写着我满脸的开心。🙂">
+  
+  <meta name="author" content="Leevisin">
+  <meta name="keywords" content="">
+  
+  <title>c语言结构 - Leevisin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"leevisin.github.io","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":35,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Leevisin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://i.loli.net/2021/03/18/cS3KlBTxnJoumwk.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="c语言结构">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-07-16 20:33" pubdate>
+        July 16, 2019 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">c语言结构</h1>
+            
+            <div class="markdown-body">
+              <p>&emsp;&emsp;结构是c语言中比较重要的一部分，但是我的使用频率不高，为了防止遗忘，就写了这篇。不要说我能不用结构就不用结构，每个事物的存在都有其必然性，在你需要的时候你就会想起它啦！<br>&emsp;&emsp;如果有很多个结构，比较容易搞混，尤其是结构带着数组、指针，再写在函数里面就更热闹了。下面这个图写着我满脸的开心。🙂<br><img src="https://i.loli.net/2019/07/16/5d2dd3bda9b1641061.png" srcset="/img/loading.gif"></p>
+<span id="more"></span>
+<h1 id="结构体的定义"><a href="#结构体的定义" class="headerlink" title="结构体的定义"></a>结构体的定义</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span>　结构体名&#123;</span>  <br>     类型名<span class="hljs-number">1</span>　成员名<span class="hljs-number">1</span>;<br>     类型名<span class="hljs-number">2</span>　成员名<span class="hljs-number">2</span>;<br>    ……<br>     类型名n　成员名n;　　　<br> &#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span>&#123;</span><br>    <span class="hljs-keyword">char</span>*name;<span class="hljs-comment">//姓名</span><br>    <span class="hljs-keyword">int</span> age;<span class="hljs-comment">//年龄</span><br>    <span class="hljs-keyword">float</span> height;<span class="hljs-comment">//身高</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="结构体变量的定义（三种方法）"><a href="#结构体变量的定义（三种方法）" class="headerlink" title="结构体变量的定义（三种方法）"></a>结构体变量的定义（三种方法）</h1><h2 id="先定义结构体类型，再定义变量"><a href="#先定义结构体类型，再定义变量" class="headerlink" title="先定义结构体类型，再定义变量"></a>先定义结构体类型，再定义变量</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span>&#123;</span><br>    <span class="hljs-keyword">char</span>*name;<span class="hljs-comment">//姓名</span><br>    <span class="hljs-keyword">int</span> age;<span class="hljs-comment">//年龄</span><br>    <span class="hljs-keyword">float</span> height;<span class="hljs-comment">//身高</span><br>&#125;;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> <span class="hljs-title">stu</span>;</span>	<br><span class="hljs-comment">//定义了一个结构体变量，变量名为stu。</span><br><span class="hljs-comment">//struct和Student是连着使用的。</span><br></code></pre></td></tr></table></figure>
+<h2 id="定义结构体类型的同时定义变量"><a href="#定义结构体类型的同时定义变量" class="headerlink" title="定义结构体类型的同时定义变量"></a>定义结构体类型的同时定义变量</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span>&#123;</span><br>    <span class="hljs-keyword">char</span>*name;<span class="hljs-comment">//姓名</span><br>    <span class="hljs-keyword">int</span> age;<span class="hljs-comment">//年龄</span><br>    <span class="hljs-keyword">float</span> height;<span class="hljs-comment">//身高</span><br>&#125;stu;	<span class="hljs-comment">//结构体变量名为stu</span><br></code></pre></td></tr></table></figure>
+<h2 id="直接定义结构体类型变量，省略类型名"><a href="#直接定义结构体类型变量，省略类型名" class="headerlink" title="直接定义结构体类型变量，省略类型名"></a>直接定义结构体类型变量，省略类型名</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-keyword">char</span>*name;<span class="hljs-comment">//姓名</span><br>    <span class="hljs-keyword">int</span> age;<span class="hljs-comment">//年龄</span><br>    <span class="hljs-keyword">float</span> height;<span class="hljs-comment">//身高</span><br>&#125;stu;<br><span class="hljs-comment">//结构体变量名为stu</span><br></code></pre></td></tr></table></figure>
+<h1 id="结构体的注意点"><a href="#结构体的注意点" class="headerlink" title="结构体的注意点"></a>结构体的注意点</h1><p>&emsp;&emsp;<strong>不允许对结构体本身递归定义，但是结构体内可以包含别的结构体。</strong><br>&emsp;&emsp;定义结构体类型，只是说明了该类型的组成情况，并没有给它分配存储空间，就像系统不为int类型本身分配空间一样。只有当定义属于结构体类型的变量时，系统才会分配存储空间给该变量</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Date</span>&#123;</span><br>		<span class="hljs-keyword">int</span> year;<br>		<span class="hljs-keyword">int</span> month;<br>		<span class="hljs-keyword">int</span> day;<br>	&#125;;<br>	<br>	<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span>&#123;</span><br>		<span class="hljs-keyword">char</span> *name;<br>		<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Date</span> <span class="hljs-title">birthday</span>;</span>	<span class="hljs-comment">//结构体内可以包含别的结构体</span><br>	&#125;;<br>	<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> <span class="hljs-title">stu</span>;</span><br>	stu.name=<span class="hljs-string">&quot;someone&quot;</span>;<br>	stu.birthday.year=<span class="hljs-number">2018</span>;<br>	stu.birthday.month=<span class="hljs-number">8</span>;<br>	stu.birthday.day=<span class="hljs-number">15</span>;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>,stu.name);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d %d\n&quot;</span>,stu.birthday.year,stu.birthday.month,stu.birthday.day);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="结构体的初始化"><a href="#结构体的初始化" class="headerlink" title="结构体的初始化"></a>结构体的初始化</h1><p>&emsp;&emsp;将各成员的初值，按顺序地放在一对大括号{}中，并用逗号分隔，一一对应赋值。<br>&emsp;&emsp;<strong>注意一定是用大括号！！字符型的用””,int or float就用数值。</strong><br>&emsp;&emsp;只能在定义变量的同时进行初始化赋值，初始化赋值和变量的定义不能分开。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> &#123;</span><br>    <span class="hljs-keyword">char</span> *name;<br>    <span class="hljs-keyword">int</span> age;<br>&#125;;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> <span class="hljs-title">stu</span> =</span> &#123;<span class="hljs-string">&quot;MJ&quot;</span>, <span class="hljs-number">27</span>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>		<span class="hljs-keyword">char</span> *name;<br>		<span class="hljs-keyword">int</span> age;<br>	&#125;stu[<span class="hljs-number">2</span>]=&#123;&#123;<span class="hljs-string">&quot;ta&quot;</span>,<span class="hljs-number">19</span>&#125;,&#123;<span class="hljs-string">&quot;ni&quot;</span>,<span class="hljs-number">19</span>&#125;&#125;;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s %d\n&quot;</span>,stu[<span class="hljs-number">0</span>].name,stu[<span class="hljs-number">0</span>].age);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s %d\n&quot;</span>,stu[<span class="hljs-number">1</span>].name,stu[<span class="hljs-number">1</span>].age);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h1 id="结构体的使用"><a href="#结构体的使用" class="headerlink" title="结构体的使用"></a>结构体的使用</h1><p>&emsp;&emsp;一般对结构体变量的操作是以成员为单位进行的，引用的一般形式为：结构体变量名.成员名<br>&emsp;&emsp;(2)行对结构体的age成员进行了赋值。”.”称为成员运算符，它在所有运算符中优先级最高。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> &#123;</span><br>     <span class="hljs-keyword">char</span> *name;<br>     <span class="hljs-keyword">int</span> age;<br> &#125;;<br> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> <span class="hljs-title">stu</span>;</span> <br> stu.age = <span class="hljs-number">27</span>; <span class="hljs-comment">// 访问stu的age成员........(2)</span><br></code></pre></td></tr></table></figure>
+<p>&emsp;&emsp;相同类型的结构体变量之间可以进行整体赋值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-number">3</span>、相同类型的结构体变量之间可以进行整体赋值<br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> &#123;</span><br>      <span class="hljs-keyword">char</span> *name;<br>      <span class="hljs-keyword">int</span> age;<br>  &#125;;<br> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> <span class="hljs-title">stu1</span> =</span> &#123;<span class="hljs-string">&quot;MJ&quot;</span>, <span class="hljs-number">27</span>&#125;;<br> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> <span class="hljs-title">stu2</span> =</span> stu1; <span class="hljs-comment">// 将stu1直接赋值给stu2</span><br> <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;age is %d&quot;</span>, stu2.age);<br> <span class="hljs-comment">//输出结果为： age is 27</span><br></code></pre></td></tr></table></figure>
+<h1 id="结构体作为函数参数"><a href="#结构体作为函数参数" class="headerlink" title="结构体作为函数参数"></a>结构体作为函数参数</h1><p>&emsp;&emsp;我记得期末考试的时候好像出了这么一道题。<br>&emsp;&emsp;将结构体变量作为函数参数进行传递时，其实传递的是全部成员的值，也就是将实参中成员的值一一赋值给对应的形参成员。因此，形参的改变不会影响到实参。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span>&#123;</span><br>	<span class="hljs-keyword">int</span> age;<br>&#125; ;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(struct Student stu)</span></span>&#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;修改前的形参：%d \n&quot;</span>,stu.age);<br>	<span class="hljs-comment">//修改实参中的age</span><br>	stu.age = <span class="hljs-number">10</span>;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;修改后的形参: %d \n&quot;</span>,stu.age);	 <br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> <span class="hljs-title">stu</span> =</span> &#123;<span class="hljs-number">30</span>&#125;;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;修改前的实参：%d \n&quot;</span>,stu.age);<br>	<span class="hljs-comment">//调用test函数</span><br>	test(stu);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;修改后的实参: %d \n&quot;</span>,stu.age);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <br>&#125; <br></code></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/07/16/5d2dcbde265c822589.png" srcset="/img/loading.gif"></p>
+<p>&emsp;&emsp;可以把结构作为函数参数，传参方式与其他类型的变量或指针类似。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br> <br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Books</span></span><br><span class="hljs-class">&#123;</span><br>   <span class="hljs-keyword">char</span>  title[<span class="hljs-number">50</span>];<br>   <span class="hljs-keyword">char</span>  author[<span class="hljs-number">50</span>];<br>   <span class="hljs-keyword">char</span>  subject[<span class="hljs-number">100</span>];<br>   <span class="hljs-keyword">int</span>   book_id;<br>&#125;;<br> <br><span class="hljs-comment">/* 函数声明 */</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printBook</span><span class="hljs-params">( struct Books book )</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( )</span></span><br><span class="hljs-function"></span>&#123;<br>   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Books</span> <span class="hljs-title">Book1</span>;</span>        <span class="hljs-comment">/* 声明 Book1，类型为 Books */</span><br>   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Books</span> <span class="hljs-title">Book2</span>;</span>        <span class="hljs-comment">/* 声明 Book2，类型为 Books */</span><br> <br>   <span class="hljs-comment">/* Book1 详述 */</span><br>   <span class="hljs-built_in">strcpy</span>( Book1.title, <span class="hljs-string">&quot;C Programming&quot;</span>);<br>   <span class="hljs-built_in">strcpy</span>( Book1.author, <span class="hljs-string">&quot;Nuha Ali&quot;</span>); <br>   <span class="hljs-built_in">strcpy</span>( Book1.subject, <span class="hljs-string">&quot;C Programming Tutorial&quot;</span>);<br>   Book1.book_id = <span class="hljs-number">6495407</span>;<br> <br>   <span class="hljs-comment">/* Book2 详述 */</span><br>   <span class="hljs-built_in">strcpy</span>( Book2.title, <span class="hljs-string">&quot;Telecom Billing&quot;</span>);<br>   <span class="hljs-built_in">strcpy</span>( Book2.author, <span class="hljs-string">&quot;Zara Ali&quot;</span>);<br>   <span class="hljs-built_in">strcpy</span>( Book2.subject, <span class="hljs-string">&quot;Telecom Billing Tutorial&quot;</span>);<br>   Book2.book_id = <span class="hljs-number">6495700</span>;<br> <br>   <span class="hljs-comment">/* 输出 Book1 信息 */</span><br>   printBook( Book1 );<br> <br>   <span class="hljs-comment">/* 输出 Book2 信息 */</span><br>   printBook( Book2 );<br> <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printBook</span><span class="hljs-params">( struct Books book )</span></span><br><span class="hljs-function"></span>&#123;<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;Book title : %s\n&quot;</span>, book.title);<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;Book author : %s\n&quot;</span>, book.author);<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;Book subject : %s\n&quot;</span>, book.subject);<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;Book book_id : %d\n&quot;</span>, book.book_id);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="指向结构体的指针变量"><a href="#指向结构体的指针变量" class="headerlink" title="指向结构体的指针变量"></a>指向结构体的指针变量</h1><p>1、每个结构体变量都有自己的存储空间和地址，因此指针也可以指向结构体变量<br>2、结构体指针变量的定义形式：struct 结构体名称 *指针变量名<br>3、有了指向结构体的指针，那么就有3种访问结构体成员的方式<br>（1）、结构体变量名.成员名<br>（2）、(*指针变量名).成员名<br>（3）、指针变量名-&gt;成员名</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span>&#123;</span><br>		<span class="hljs-keyword">char</span> *name;<br>		<span class="hljs-keyword">int</span> age;<br>	&#125;;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> <span class="hljs-title">stu</span> =</span> &#123;<span class="hljs-string">&quot;OJ&quot;</span>,<span class="hljs-number">18</span>&#125;;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span> *<span class="hljs-title">p</span>;</span><br>	p = &amp;stu;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;name=%s,age = %d \n&quot;</span>,stu.name,stu.age);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;name=%s,age = %d \n&quot;</span>,(*p).name,(*p).age);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;name=%s,age = %d \n&quot;</span>,p-&gt;name,p-&gt;age);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/07/16/5d2dcdef3633092072.png" srcset="/img/loading.gif"></p>
+<p>&emsp;&emsp;您可以定义指向结构的指针，方式与定义指向其他类型变量的指针相似，如下所示：</p>
+<center> struct Books *struct_pointer;</center>
+&emsp;&emsp;现在，您可以在上述定义的指针变量中存储结构变量的地址。为了查找结构变量的地址，请把 & 运算符放在结构名称的前面，如下所示：
+<center> struct_pointer = &Book1;</center>
+&emsp;&emsp;为了使用指向该结构的指针访问结构的成员，您必须使用 -> 运算符，如下所示：
+<center> struct_pointer->title;</center>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br> <br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Books</span></span><br><span class="hljs-class">&#123;</span><br>   <span class="hljs-keyword">char</span>  title[<span class="hljs-number">50</span>];<br>   <span class="hljs-keyword">char</span>  author[<span class="hljs-number">50</span>];<br>   <span class="hljs-keyword">char</span>  subject[<span class="hljs-number">100</span>];<br>   <span class="hljs-keyword">int</span>   book_id;<br>&#125;;<br> <br><span class="hljs-comment">/* 函数声明 */</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printBook</span><span class="hljs-params">( struct Books *book )</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( )</span></span><br><span class="hljs-function"></span>&#123;<br>   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Books</span> <span class="hljs-title">Book1</span>;</span>        <span class="hljs-comment">/* 声明 Book1，类型为 Books */</span><br>   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Books</span> <span class="hljs-title">Book2</span>;</span>        <span class="hljs-comment">/* 声明 Book2，类型为 Books */</span><br> <br>   <span class="hljs-comment">/* Book1 详述 */</span><br>   <span class="hljs-built_in">strcpy</span>( Book1.title, <span class="hljs-string">&quot;C Programming&quot;</span>);<br>   <span class="hljs-built_in">strcpy</span>( Book1.author, <span class="hljs-string">&quot;Nuha Ali&quot;</span>); <br>   <span class="hljs-built_in">strcpy</span>( Book1.subject, <span class="hljs-string">&quot;C Programming Tutorial&quot;</span>);<br>   Book1.book_id = <span class="hljs-number">6495407</span>;<br> <br>   <span class="hljs-comment">/* Book2 详述 */</span><br>   <span class="hljs-built_in">strcpy</span>( Book2.title, <span class="hljs-string">&quot;Telecom Billing&quot;</span>);<br>   <span class="hljs-built_in">strcpy</span>( Book2.author, <span class="hljs-string">&quot;Zara Ali&quot;</span>);<br>   <span class="hljs-built_in">strcpy</span>( Book2.subject, <span class="hljs-string">&quot;Telecom Billing Tutorial&quot;</span>);<br>   Book2.book_id = <span class="hljs-number">6495700</span>;<br> <br>   <span class="hljs-comment">/* 通过传 Book1 的地址来输出 Book1 信息 */</span><br>   printBook( &amp;Book1 );<br> <br>   <span class="hljs-comment">/* 通过传 Book2 的地址来输出 Book2 信息 */</span><br>   printBook( &amp;Book2 );<br> <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printBook</span><span class="hljs-params">( struct Books *book )</span></span><br><span class="hljs-function"></span>&#123;<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;Book title : %s\n&quot;</span>, book-&gt;title);<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;Book author : %s\n&quot;</span>, book-&gt;author);<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;Book subject : %s\n&quot;</span>, book-&gt;subject);<br>   <span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;Book book_id : %d\n&quot;</span>, book-&gt;book_id);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>参考文献</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.runoob.com/cprogramming/c-structures.html">C 结构体| 菜鸟教程</a><br><a target="_blank" rel="noopener" href="https://www.kancloud.cn/digest/clearning/149712">C语言入门教程24-结构体· C语言编程基础· 看云</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/11338c411bec">c语言中的关键字struct(结构体)的用法- 简书</a></p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/c%E8%AF%AD%E8%A8%80/">c语言</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/c%E8%AF%AD%E8%A8%80/">c语言</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/07/21/c%E8%AF%AD%E8%A8%80%E8%87%AA%E5%86%99%E5%A4%B4%E6%96%87%E4%BB%B6/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">c语言自写头文件</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/07/04/c%E8%AF%AD%E8%A8%80%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">c语言作业总结</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

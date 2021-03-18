@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="&amp;emsp;&amp;emsp;小学期两周的计算机实习结束了，时间虽然不长，但是这两周的收获可并不小，无论是经验还是教训，是个人还是团队，是整体还是细节，都收获颇多。从第一天确定题目，没有基本的架构的思绪混乱，到后来框架渐渐清晰，再到最终整合完成后不断地debug，每天都是满满当当，每天都有不一样的收获。最后一天验收并没有想象中的那么紧张和快乐，反而是异常平静，还有一丝小失落。总的来说，达到了计算机实习的">
+  
+  <meta name="author" content="Leevisin">
+  <meta name="keywords" content="">
+  
+  <title>小学期总结 - Leevisin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"leevisin.github.io","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":35,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Leevisin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://i.loli.net/2021/03/18/cS3KlBTxnJoumwk.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="小学期总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-09-09 22:50" pubdate>
+        September 9, 2019 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">小学期总结</h1>
+            
+            <div class="markdown-body">
+              <p>&emsp;&emsp;小学期两周的计算机实习结束了，时间虽然不长，但是这两周的收获可并不小，无论是经验还是教训，是个人还是团队，是整体还是细节，都收获颇多。从第一天确定题目，没有基本的架构的思绪混乱，到后来框架渐渐清晰，再到最终整合完成后不断地debug，每天都是满满当当，每天都有不一样的收获。最后一天验收并没有想象中的那么紧张和快乐，反而是异常平静，还有一丝小失落。总的来说，达到了计算机实习的既定目标。<br>&emsp;&emsp;回顾这十多天的经历，还是学会很多的，比如说ftell , fseek等用法、意义，系统时间的调用，以及可以用变量创建不同的文件等，接下来我想从整体把握和细节处理两个方面谈谈我的心得体会。<span id="more"></span></p>
+<h1 id="整体把握"><a href="#整体把握" class="headerlink" title="整体把握"></a>整体把握</h1><h2 id="分工合作"><a href="#分工合作" class="headerlink" title="分工合作"></a>分工合作</h2><p>&emsp;&emsp;先从整体把握方面来说，第一点，我认为最重要的就是分工合作，而在分工合作中组长起着至关重要的作用，任务分配和进度管理，都是对组长的一个考验，同时组员也有义务帮助组长看安排的是否合理。我们组前两天有些操之过急，而且大部分都是各自做各自的事情，对任务的分配也不是很明确，也就是不知道自己到底在写什么，写的代码到底应该放到什么地方去，不清楚自己在干什么大大的浪费了时间。再者，分工的时候也要有先后，有的部分需要有前面的作为基础才能够写，所以大家可以先集中去把框架搭起来，然后再去分配重新分配任务。最后就是整合，整合的过程会出现很多的问题。比如前面一个函数需要调用后面一个函数，但是后面函数需要的东西，前面函数不需要，所以还要改前面函数的定义，把后面函数需要调用的输入到前面函数，再调用到后面的函数。同时再改版的时候，由于大家是一起工作，所以会有人拿的版本新，有的人拿的版本老，就导致，有些已经改动过的内容由于版本旧会相当于没改，也浪费了许多时间。</p>
+<h2 id="心态方面"><a href="#心态方面" class="headerlink" title="心态方面"></a>心态方面</h2><p>&emsp;&emsp;第二点是心态方面，由于开始有些操之过急，应该实现的效果实现的并不是很好，所以后面要有改动，有的改动还是大改动。因为不完美，后面就需要用更长的时间去看自己写的代码，以及看懂之后怎么改，有的时候不放弃旧的思路是不行的，逻辑问题非常严重，不得不从头再来。而且有的时候心态很着急，就耐不下心来去看代码，毛毛躁躁的越看越看不下去，时间都白白地浪费掉了。所以今后在编程地过程中，要平心静气，要一点一点地去解决问题，不能因为怕麻烦一眼看过几行代码，代码的意义全都不懂，最后落得重新开始的结果。</p>
+<h2 id="工作日志"><a href="#工作日志" class="headerlink" title="工作日志"></a>工作日志</h2><p>&emsp;&emsp;第三点是工作日志和工作进度方面，每个人每天都应该写自己的工作日志，今天到底干了些什么，有哪些地方已经弄好，有哪些地方还没有写完，会有什么存在的逻辑问题，以及今后需要优化做的事情。写完之后统一交给组长，由组长对今天任务进度进行把控，对没有按时完成进度的同学进行关照，是组长分配任务的不合理，还是因为别的事情耽误了，再综合考虑后，重新规划明天的任务，保证每天大体按进度进行，做到稳中有序，不慌不忙。</p>
+<h2 id="编程方面"><a href="#编程方面" class="headerlink" title="编程方面"></a>编程方面</h2><p>&emsp;&emsp;第四点是关于编程方面的，在开始编程的时候没有考虑到天数的问题，所有的文件和数据都是按照一天的情况写的，所以导致后面需要将数组升维，每个里面再重新加入判断是今天还是明天的代码。还有就是变量没有统一，很多重复意义的变量名称导致调用的时候混乱。前后写入的方式没有统一，所以会出现一直debug，bug一直有的情况。开工之前应该把大家都用到的变量和函数统一，防止发生重复，以及调用混乱的情况。第四点是关于编程方面的，在开始编程的时候没有考虑到天数的问题，所有的文件和数据都是按照一天的情况写的，所以导致后面需要将数组升维，每个里面再重新加入判断是今天还是明天的代码。还有就是变量没有统一，很多重复意义的变量名称导致调用的时候混乱。前后写入的方式没有统一，所以会出现一直debug，bug一直有的情况。开工之前应该把大家都用到的变量和函数统一，防止发生重复，以及调用混乱的情况。开工前要先画流程图，对程序运行的过程要有一个整体的把握。写代码应该由实际情况出发，优先考虑好需要满足的功能、需要考虑到的特殊情况以及题目中或现实生活中提供的情景与限制，从这个基础出发再去考虑如何在代码层面上实现各个功能及满足限制，以确保代码上的逻辑正确。</p>
+<h1 id="细节处理"><a href="#细节处理" class="headerlink" title="细节处理"></a>细节处理</h1><h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><p>&emsp;&emsp;前面谈完了整体把握方面，现在来说说细节处理。第一点写代码要合乎规范，通俗易懂。队友之间要作妖沟通，因为是团队合作，所以肯定会有互相调用函数的情况，有的函数的变量可能别人用不到，但是自己会用到，对别人的函数进行修改的时候一定要做好注释，不然就会导致这个函数最后谁都看不懂，每个人只能看懂自己写的一部分，一旦出了问题，那么改起来就要从头开始了，是十分费力不讨好的事情。</p>
+<h2 id="逻辑思维"><a href="#逻辑思维" class="headerlink" title="逻辑思维"></a>逻辑思维</h2><p>&emsp;&emsp;第二点就是思维逻辑，考虑问题是否周全。要对不同种的情况进行考虑，写完之后也要进行多种可能发生的情况测试，边测边改，如果发现改代码的代价太大，要果断地敢于放弃之前写的代码，重新开始。有的时候，重新开始比在之前的路上继续走要更有勇气和动力！</p>
+<h2 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h2><p>&emsp;&emsp;第三点是Debug。很多情况都是一些很小的问题，有些可以一眼看出来，这个样的还好，但是有些找出来需要花费的代价太大，这些都是编程没有养成良好习惯造成的。比如说，文件没关，之前打开的只读，写入写不进去，或者写入没关，直接显示没写进去的情况。变量名称之间引用错误，如用户数有很多个，本来是j但是习惯性的打成I 。Debug的时候顾前忘后，比如前面的都改成了Seats[day+date-1]，到后面的都改成了Sears[day]，然后一直发现只是第一天的，bug一直找不到。又比如关于回车的问题，对于一个文件有三个情况都会改写。但是有的最后会打一个回车，有的不会，这就造成读取行的时候会差一的问题，所以要在写文件的时候明确规范，到底要不要回车。同时回车有的时候会在gets使用的时候吞掉，所以要记得释放键盘缓冲区。</p>
+<h2 id="文件应用"><a href="#文件应用" class="headerlink" title="文件应用"></a>文件应用</h2><p>&emsp;&emsp;第四点是多余文件记录信息。如果可以用现有的文件生成所需要的信息，就不用再单独写一个文件了，而且多余文件之间还需要进行联动，对于编程也是一大难点，应该确定主文件，只要主文件变，其他相应的文件都应该跟着改。除非是需要永久存储的信息，需要写入到文件中。</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>&emsp;&emsp;这次小学期是第一次进行小组合作完成任务，在合作中出现很多出人意料的问题也都是很正常的情况，这些问题让我们在个人能力和团队合作上都有了提升。恪守北邮“厚德博学，敬业乐群”的校训，兢兢业业地完成自己的工作，十多天的时间不长，却让我对北邮的校训有了新的理解和体会。虽然合作中有很都不尽如人意的地方，但是能和这样认真负责的队友一起完成任务，着实是一件很快乐，很充实的事情。小学期的意义不仅在于编程技术上的提升，更在当今合作的大趋势下，教会我如何与队友合作，去完成更加艰巨的任务。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/c%E8%AF%AD%E8%A8%80/">c语言</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/c%E8%AF%AD%E8%A8%80/">c语言</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/12/Java%E7%BB%A7%E6%89%BF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java继承(Inheritance)</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/07/21/c%E8%AF%AD%E8%A8%80%E8%87%AA%E5%86%99%E5%A4%B4%E6%96%87%E4%BB%B6/">
+                        <span class="hidden-mobile">c语言自写头文件</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

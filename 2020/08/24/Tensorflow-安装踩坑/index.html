@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="最近在琢磨琢磨TensorFlow，花了很多时间才搭建成功，在此记下自己碰到的问题">
+  
+  <meta name="author" content="Leevisin">
+  <meta name="keywords" content="">
+  
+  <title>Tensorflow 安装踩坑 - Leevisin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"leevisin.github.io","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":35,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Leevisin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://i.loli.net/2021/03/18/cS3KlBTxnJoumwk.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Tensorflow 安装踩坑">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-08-24 23:41" pubdate>
+        August 24, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      41
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Tensorflow 安装踩坑</h1>
+            
+            <div class="markdown-body">
+              <center>最近在琢磨琢磨TensorFlow，花了很多时间才搭建成功，在此记下自己碰到的问题</center>
+<span id="more"></span>
+
+<h1 id="下载Python"><a href="#下载Python" class="headerlink" title="下载Python"></a>下载Python</h1><font color="red">
+注意：
+1、机器必须是64位的，TensorFlow不支持32位！TensorFlow不支持32位！TensorFlow不支持32位！
+2、Python必须装64位的！
+</font>
+
+
+<p><strong>这个Tensorflow在官网对系统要求<br>Python 3.5-3.7<br>pip 19.0 或更高版本（需要 manylinux2010 支持）<br>而Keras 兼容的 Python 版本: Python 2.7-3.6。<br>所以下载的版本我就选择了python 3.6.0 64位</strong><br>现在的Python已经更新到了3.8.3版本了，更新太快了，但是新的不一定都支持。</p>
+<p>下载完了之后，安装，<strong>点击那个Add to Path选项</strong>，如果可以直接python就可以忽略下面了。<br>调环境变量，在<a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-install.html">菜鸟教程</a>上都有，只用把上面用户的系统的系统变量调对了就可以。同时要在PyCharm调整编译器，在<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/pycharm-windows-install.html">这里</a>也有教程。</p>
+<h1 id="更新pip和virtualenv"><a href="#更新pip和virtualenv" class="headerlink" title="更新pip和virtualenv"></a>更新pip和virtualenv</h1><p>pip一定要更新到19.0版本以后，现在最新的是20.0<br>virtualenv没看出来有什么用处，我好像虚拟环境用，但我直接在系统环境里装的</p>
+<h1 id="下载Tensorflow"><a href="#下载Tensorflow" class="headerlink" title="下载Tensorflow"></a>下载Tensorflow</h1><p>如果直接使用 pip install –upgrade tensorflow由于国内网络问题，会导致下载不下来，根本不可能安装上。<br>所以可以在<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">国内镜像</a>去下载，我这里选的阿里云的镜像。需要手动下载的，在<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">这里</a>直接Ctrl + F搜索 tensorflow就可以找到下载地方了。<br><img src="https://upload-images.jianshu.io/upload_images/1925876-f7655d761ad346e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp" srcset="/img/loading.gif"></p>
+<h1 id="安装Tensorflow"><a href="#安装Tensorflow" class="headerlink" title="安装Tensorflow"></a>安装Tensorflow</h1><p>安装命令pip install建议在PowerShell里面执行，Powershell的打开方式是在目标文件夹下按住shift+鼠标右键，选择Window PowerShell，就打开了。<br>直接在下载到的TensorFlow目录下（就是你刚才把Tensorflow下载的地方）执行pip install tensorflow-2.3.0-cp36-cp36m-win_amd64.whl 期间会安装一些TensorFLow的依赖，同样的，可能安装失败。因为文件一大就下载不下来，所以解决的最好办法就是手动下载，再安装。<br>如我的numpy安装失败了</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">Collecting numpy&gt;=1.11.0 (from tensorflow==1.0.0)<br>  Downloading numpy-1.12.0-cp35-none-win_amd64.whl (7.7MB)<br>Exception:<br>Traceback (most recent call last):<br>  File &quot;c:<span class="hljs-symbol">\p</span>ython35-3<span class="hljs-symbol">\l</span>ib<span class="hljs-symbol">\s</span>ite-packages<span class="hljs-symbol">\p</span>ip<span class="hljs-symbol">\_</span>vendor<span class="hljs-symbol">\r</span>equests<span class="hljs-symbol">\p</span>ackages<span class="hljs-symbol">\u</span>rllib3<span class="hljs-symbol">\r</span>esponse.py&quot;, line 232, in _error_catcher<br>    yield<br>  File &quot;c:<span class="hljs-symbol">\p</span>ython35-3<span class="hljs-symbol">\l</span>ib<span class="hljs-symbol">\s</span>ite-packages<span class="hljs-symbol">\p</span>ip<span class="hljs-symbol">\_</span>vendor<span class="hljs-symbol">\r</span>equests<span class="hljs-symbol">\p</span>ackages<span class="hljs-symbol">\u</span>rllib3<span class="hljs-symbol">\r</span>esponse.py&quot;, line 314, in read<br>    data = self._fp.read(amt)<br></code></pre></td></tr></table></figure>
+<p>在<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">这里</a>同样搜索<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/numpy">numpy</a>，下载在手动安装，这要注意依赖的版本，直接复制numpy-1.12.0-cp35-none-win_amd64.whl，这个文件在你下载的地方会显示，直接复制查找下载就好，搜索一下就行：<br>现在都是竖着排列的，很方便查看了。<br><img src="https://upload-images.jianshu.io/upload_images/1925876-6f24023d92bdc609.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp" srcset="/img/loading.gif"></p>
+<p>在PowerShell输入pip install numpy-1.12.0-cp35-none-win_amd64.whl<br>手动安装成功：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">pip</span> install numpy-<span class="hljs-number">1</span>.<span class="hljs-number">12</span>.<span class="hljs-number">0</span>-cp<span class="hljs-number">35</span>-none-win_amd<span class="hljs-number">64</span>.whl<br><span class="hljs-attribute">Processing</span> f:\tensorflow\numpy-<span class="hljs-number">1</span>.<span class="hljs-number">12</span>.<span class="hljs-number">0</span>-cp<span class="hljs-number">35</span>-none-win_amd<span class="hljs-number">64</span>.whl<br><span class="hljs-attribute">Installing</span> collected packages: numpy<br><span class="hljs-attribute">Successfully</span> installed numpy-<span class="hljs-number">1</span>.<span class="hljs-number">12</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<p><font color="red">其他的包安装方法同理。</font></p>
+<h1 id="测试安装结果"><a href="#测试安装结果" class="headerlink" title="测试安装结果"></a>测试安装结果</h1><p>在PyCharm里输入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf<br>tf.compat.v1.disable_eager_execution()<br>hello = tf.constant(<span class="hljs-string">&#x27;hello&#x27;</span>)<br>sess= tf.compat.v1.Session()<br>print(sess.run(hello))<br></code></pre></td></tr></table></figure>
+<p>如果最后能输出结果b’hello则成功</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">00</span>.<span class="hljs-number">435756</span>: I tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">48</span>] Successfully opened dynamic library cudart<span class="hljs-number">64</span>_<span class="hljs-number">101</span>.dll<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">03</span>.<span class="hljs-number">200442</span>: I tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">48</span>] Successfully opened dynamic library nvcuda.dll<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">03</span>.<span class="hljs-number">875290</span>: I tensorflow/core/common_runtime/gpu/gpu_device.cc:<span class="hljs-number">1716</span>] Found device <span class="hljs-number">0</span> with properties: <br><span class="hljs-attribute">pciBusID</span>: <span class="hljs-number">0000</span>:<span class="hljs-number">01</span>:<span class="hljs-number">00</span>.<span class="hljs-number">0</span> name: GeForce MX<span class="hljs-number">150</span> computeCapability: <span class="hljs-number">6</span>.<span class="hljs-number">1</span><br><span class="hljs-attribute">coreClock</span>: <span class="hljs-number">1</span>.<span class="hljs-number">0375</span>GHz coreCount: <span class="hljs-number">3</span> deviceMemorySize: <span class="hljs-number">2</span>.<span class="hljs-number">00</span>GiB deviceMemoryBandwidth: <span class="hljs-number">37</span>.<span class="hljs-number">33</span>GiB/s<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">03</span>.<span class="hljs-number">875660</span>: I tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">48</span>] Successfully opened dynamic library cudart<span class="hljs-number">64</span>_<span class="hljs-number">101</span>.dll<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">03</span>.<span class="hljs-number">877846</span>: W tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">59</span>] Could not load dynamic library &#x27;cublas<span class="hljs-number">64</span>_<span class="hljs-number">10</span>.dll&#x27;; dlerror: cublas<span class="hljs-number">64</span>_<span class="hljs-number">10</span>.dll not found<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">03</span>.<span class="hljs-number">993896</span>: I tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">48</span>] Successfully opened dynamic library cufft<span class="hljs-number">64</span>_<span class="hljs-number">10</span>.dll<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">000945</span>: I tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">48</span>] Successfully opened dynamic library curand<span class="hljs-number">64</span>_<span class="hljs-number">10</span>.dll<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">062328</span>: I tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">48</span>] Successfully opened dynamic library cusolver<span class="hljs-number">64</span>_<span class="hljs-number">10</span>.dll<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">063793</span>: W tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">59</span>] Could not load dynamic library &#x27;cusparse<span class="hljs-number">64</span>_<span class="hljs-number">10</span>.dll&#x27;; dlerror: cusparse<span class="hljs-number">64</span>_<span class="hljs-number">10</span>.dll not found<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">064736</span>: W tensorflow/stream_executor/platform/default/dso_loader.cc:<span class="hljs-number">59</span>] Could not load dynamic library &#x27;cudnn<span class="hljs-number">64</span>_<span class="hljs-number">7</span>.dll&#x27;; dlerror: cudnn<span class="hljs-number">64</span>_<span class="hljs-number">7</span>.dll not found<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">064970</span>: W tensorflow/core/common_runtime/gpu/gpu_device.cc:<span class="hljs-number">1753</span>] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.<br><span class="hljs-attribute">Skipping</span> registering GPU devices...<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">066352</span>: I tensorflow/core/platform/cpu_feature_guard.cc:<span class="hljs-number">142</span>] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX<span class="hljs-number">2</span><br><span class="hljs-attribute">To</span> enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">077843</span>: I tensorflow/compiler/xla/service/service.cc:<span class="hljs-number">168</span>] XLA service <span class="hljs-number">0</span>x<span class="hljs-number">1</span>f<span class="hljs-number">2523</span>ef<span class="hljs-number">360</span> initialized for platform Host (this does not guarantee that XLA will be used). Devices:<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">078174</span>: I tensorflow/compiler/xla/service/service.cc:<span class="hljs-number">176</span>]   StreamExecutor device (<span class="hljs-number">0</span>): Host, Default Version<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">078547</span>: I tensorflow/core/common_runtime/gpu/gpu_device.cc:<span class="hljs-number">1257</span>] Device interconnect StreamExecutor with strength <span class="hljs-number">1</span> edge matrix:<br><span class="hljs-attribute">2020</span>-<span class="hljs-number">08</span>-<span class="hljs-number">25</span> <span class="hljs-number">00</span>:<span class="hljs-number">01</span>:<span class="hljs-number">04</span>.<span class="hljs-number">078731</span>: I tensorflow/core/common_runtime/gpu/gpu_device.cc:<span class="hljs-number">1263</span>]      <br><span class="hljs-attribute">b</span>&#x27;hello&#x27;<br><br><span class="hljs-attribute">Process</span> finished with exit code <span class="hljs-number">0</span><br><br></code></pre></td></tr></table></figure>
+
+<h1 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h1><p>如果版本不行就更新tensorflow的版本，好像说1.15的版本支持比较好</p>
+<h2 id="tensorflow出现-ImportError-DLL-load-failed-找不到指定的程序"><a href="#tensorflow出现-ImportError-DLL-load-failed-找不到指定的程序" class="headerlink" title="tensorflow出现 ImportError: DLL load failed: 找不到指定的程序"></a>tensorflow出现 ImportError: DLL load failed: 找不到指定的程序</h2><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">Traceback (most recent call last): <br>File “D:/pyfile/word4/yy.py”, line 3, in <br>import tensorflow as tf <br>File “D:<span class="hljs-symbol">\p</span>yfile<span class="hljs-symbol">\w</span>ord4<span class="hljs-symbol">\v</span>env<span class="hljs-symbol">\l</span>ib<span class="hljs-symbol">\s</span>ite-packages<span class="hljs-symbol">\t</span>ensorflow__init__.py”, line 24, in <br>from tensorflow.python import pywrap_tensorflow # pylint: disable=unused-import <br>File “D:<span class="hljs-symbol">\p</span>yfile<span class="hljs-symbol">\w</span>ord4<span class="hljs-symbol">\v</span>env<span class="hljs-symbol">\l</span>ib<span class="hljs-symbol">\s</span>ite-packages<span class="hljs-symbol">\t</span>ensorflow<span class="hljs-symbol">\p</span>ython__init__.py”, line 52, in <br>from tensorflow.core.framework.graph_pb2 import * <br>File “D:<span class="hljs-symbol">\p</span>yfile<span class="hljs-symbol">\w</span>ord4<span class="hljs-symbol">\v</span>env<span class="hljs-symbol">\l</span>ib<span class="hljs-symbol">\s</span>ite-packages<span class="hljs-symbol">\t</span>ensorflow<span class="hljs-symbol">\c</span>ore<span class="hljs-symbol">\f</span>ramework<span class="hljs-symbol">\g</span>raph_pb2.py”, line 6, in <br>from google.protobuf import descriptor as _descriptor <br>File “D:<span class="hljs-symbol">\p</span>yfile<span class="hljs-symbol">\w</span>ord4<span class="hljs-symbol">\v</span>env<span class="hljs-symbol">\l</span>ib<span class="hljs-symbol">\s</span>ite-packages<span class="hljs-symbol">\g</span>oogle<span class="hljs-symbol">\p</span>rotobuf<span class="hljs-symbol">\d</span>escriptor.py”, line 47, in <br>from google.protobuf.pyext import _message <br>ImportError: DLL load failed: 找不到指定的程序。<br></code></pre></td></tr></table></figure>
+<p><font color="red">解决方法</font><br>没有注意到protobuf已经更新。 在自动安装了tensorflow时， protobuf安装的是最新版本3.6.1， 出现了不兼容的问题。<br>更换为 protobuf 3.6.0即可</p>
+<p>在刚才的PowerShell里输入<br>pip install protobuf==3.6.0<br>问题解决<br>参考内容(<a target="_blank" rel="noopener" href="https://blog.csdn.net/lijil168/article/details/82289596">https://blog.csdn.net/lijil168/article/details/82289596</a>)</p>
+<h2 id="解决-tensorflow-gpu-2-1-出现错误-“Could-not-load-dynamic-library-‘cudart64-101-dll’"><a href="#解决-tensorflow-gpu-2-1-出现错误-“Could-not-load-dynamic-library-‘cudart64-101-dll’" class="headerlink" title="解决 tensorflow-gpu 2.1 出现错误 “Could not load dynamic library ‘cudart64_101.dll’"></a>解决 tensorflow-gpu 2.1 出现错误 “Could not load dynamic library ‘cudart64_101.dll’</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dart">&gt;&gt;&gt; <span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf<br><span class="hljs-number">2020</span><span class="hljs-number">-04</span><span class="hljs-number">-22</span> <span class="hljs-number">14</span>:<span class="hljs-number">19</span>:<span class="hljs-number">56.862944</span>: W tensorflow/stream_executor/platform/<span class="hljs-keyword">default</span>/dso_loader.cc:<span class="hljs-number">55</span>] Could not load <span class="hljs-built_in">dynamic</span> <span class="hljs-keyword">library</span> <span class="hljs-string">&#x27;cudart64_101.dll&#x27;</span>; dlerror: cudart64_101.dll not found<br><span class="hljs-number">2020</span><span class="hljs-number">-04</span><span class="hljs-number">-22</span> <span class="hljs-number">14</span>:<span class="hljs-number">19</span>:<span class="hljs-number">56.867965</span>: I tensorflow/stream_executor/cuda/cudart_stub.cc:<span class="hljs-number">29</span>] Ignore above cudart dlerror <span class="hljs-keyword">if</span> you <span class="hljs-keyword">do</span> not have a GPU <span class="hljs-keyword">set</span> up <span class="hljs-keyword">on</span> your machine.<br></code></pre></td></tr></table></figure>
+<p>原因<br>cudart64_101.dll”是cuda10.1这个版本中才含有的，而我安装的cuda的不是，如果你是10.0或者10.2或者11.0等都可以用这个解决。<br>解决方法<br>将“cudart64_101.dll”添加到“C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2\bin”中去，问题解决。<br>cudart64_101.dll的下载地址：<a target="_blank" rel="noopener" href="https://cn.dll-files.com/cudart64_101.dll.html">cudart64_101.dll</a><br>参考内容(<a target="_blank" rel="noopener" href="https://blog.csdn.net/wjhua_223/article/details/105681521">https://blog.csdn.net/wjhua_223/article/details/105681521</a>)</p>
+<h2 id="出现很多I的警告"><a href="#出现很多I的警告" class="headerlink" title="出现很多I的警告"></a>出现很多I的警告</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs gradle">(tensorflow1) C:\Users\Administrator&gt;python<br>Python <span class="hljs-number">3.7</span>.<span class="hljs-number">7</span> (<span class="hljs-keyword">default</span>, May  <span class="hljs-number">6</span> <span class="hljs-number">2020</span>, <span class="hljs-number">11</span>:<span class="hljs-number">45</span>:<span class="hljs-number">54</span>) [MSC v.<span class="hljs-number">1916</span> <span class="hljs-number">64</span> bit (AMD64)] :: Anaconda, Inc. on win32<br>Type <span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-string">&quot;copyright&quot;</span>, <span class="hljs-string">&quot;credits&quot;</span> or <span class="hljs-string">&quot;license&quot;</span> <span class="hljs-keyword">for</span> more information.<br>&gt;&gt;&gt; <span class="hljs-keyword">import</span> tensorflow as tf<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">23.205171</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cudart64_101.dll<br>&gt;&gt;&gt; tf.compat.v1.disable_eager_execution()<br>&gt;&gt;&gt; hello = tf.constant(<span class="hljs-string">&#x27;hello,tensorflow&#x27;</span>)<br>&gt;&gt;&gt; sess= tf.compat.v1.Session()<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.472006</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library nvcuda.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.580727</span>: I tensorflow<span class="hljs-regexp">/core/</span>common_runtime<span class="hljs-regexp">/gpu/g</span>pu_device.cc:<span class="hljs-number">1555</span>] Found device <span class="hljs-number">0</span> with properties:<br>pciBusID: <span class="hljs-number">0000</span>:<span class="hljs-number">00</span>:<span class="hljs-number">1</span>e.<span class="hljs-number">0</span> name: Tesla T4 computeCapability: <span class="hljs-number">7.5</span><br>coreClock: <span class="hljs-number">1.59</span>GHz coreCount: <span class="hljs-number">40</span> deviceMemorySize: <span class="hljs-number">14.85</span>GiB deviceMemoryBandwidth: <span class="hljs-number">298.08</span>GiB/s<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.589145</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cudart64_101.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.600717</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cublas64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.614987</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cufft64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.622689</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library curand64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.637295</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cusolver64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.645685</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cusparse64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.673263</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cudnn64_7.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.678463</span>: I tensorflow<span class="hljs-regexp">/core/</span>common_runtime<span class="hljs-regexp">/gpu/g</span>pu_device.cc:<span class="hljs-number">1697</span>] Adding visible gpu devices: <span class="hljs-number">0</span><br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.683543</span>: I tensorflow<span class="hljs-regexp">/core/</span>platform/cpu_feature_guard.cc:<span class="hljs-number">142</span>] Your CPU supports instructions that <span class="hljs-keyword">this</span> TensorFlow binary was not compiled to use: AVX AVX2<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.690563</span>: I tensorflow<span class="hljs-regexp">/core/</span>common_runtime<span class="hljs-regexp">/gpu/g</span>pu_device.cc:<span class="hljs-number">1555</span>] Found device <span class="hljs-number">0</span> with properties:<br>pciBusID: <span class="hljs-number">0000</span>:<span class="hljs-number">00</span>:<span class="hljs-number">1</span>e.<span class="hljs-number">0</span> name: Tesla T4 computeCapability: <span class="hljs-number">7.5</span><br>coreClock: <span class="hljs-number">1.59</span>GHz coreCount: <span class="hljs-number">40</span> deviceMemorySize: <span class="hljs-number">14.85</span>GiB deviceMemoryBandwidth: <span class="hljs-number">298.08</span>GiB/s<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.701724</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cudart64_101.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.705676</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cublas64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.711700</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cufft64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.716021</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library curand64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.720220</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cusolver64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.724584</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cusparse64_10.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.732739</span>: I tensorflow<span class="hljs-regexp">/stream_executor/</span>platform<span class="hljs-regexp">/default/</span>dso_loader.cc:<span class="hljs-number">44</span>] Successfully opened dynamic library cudnn64_7.dll<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25.738786</span>: I tensorflow<span class="hljs-regexp">/core/</span>common_runtime<span class="hljs-regexp">/gpu/g</span>pu_device.cc:<span class="hljs-number">1697</span>] Adding visible gpu devices: <span class="hljs-number">0</span><br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">26.578678</span>: I tensorflow<span class="hljs-regexp">/core/</span>common_runtime<span class="hljs-regexp">/gpu/g</span>pu_device.cc:<span class="hljs-number">1096</span>] Device interconnect StreamExecutor with strength <span class="hljs-number">1</span> edge matrix:<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">26.583080</span>: I tensorflow<span class="hljs-regexp">/core/</span>common_runtime<span class="hljs-regexp">/gpu/g</span>pu_device.cc:<span class="hljs-number">1102</span>]      <span class="hljs-number">0</span><br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">26.586153</span>: I tensorflow<span class="hljs-regexp">/core/</span>common_runtime<span class="hljs-regexp">/gpu/g</span>pu_device.cc:<span class="hljs-number">1115</span>] <span class="hljs-number">0</span>:   N<br><span class="hljs-number">2020</span>-<span class="hljs-number">06</span>-<span class="hljs-number">21</span> <span class="hljs-number">04</span>:<span class="hljs-number">02</span>:<span class="hljs-number">26.591704</span>: I tensorflow<span class="hljs-regexp">/core/</span>common_runtime<span class="hljs-regexp">/gpu/g</span>pu_device.cc:<span class="hljs-number">1241</span>] Created TensorFlow device (<span class="hljs-regexp">/job:localhost/</span>replica:<span class="hljs-number">0</span><span class="hljs-regexp">/task:0/</span>device:GPU:<span class="hljs-number">0</span> with <span class="hljs-number">14239</span> MB memory) -&gt; physical GPU (device: <span class="hljs-number">0</span>, name: Tesla T4, pci bus id: <span class="hljs-number">0000</span>:<span class="hljs-number">00</span>:<span class="hljs-number">1</span>e.<span class="hljs-number">0</span>, compute capability: <span class="hljs-number">7.5</span>)<br>&gt;&gt;&gt; <span class="hljs-keyword">print</span>(sess.run(hello))<br>b<span class="hljs-string">&#x27;hello,tensorflow&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>这个不是问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf<br>tf.compat.v1.disable_eager_execution()<br>hello = tf.constant(<span class="hljs-string">&#x27;hello,tensorflow&#x27;</span>)<br>sess= tf.compat.v1.Session()<br>print(sess.run(hello))<br></code></pre></td></tr></table></figure>
+<p>这里需要注意的是，由于本文使用的Tensorflow版本是2.1，原来1.1版本中的Session方法已经过期，因此在2.x上调用Session的方法需要修改为compat.v1.Session。否则会报告方法不可用。<br>只要最后打出了hello表示配置成功。<br>参考内容(<a target="_blank" rel="noopener" href="https://blog.bitipcman.com/install-tensorflow-on-windows/">https://blog.bitipcman.com/install-tensorflow-on-windows/</a>)</p>
+<hr>
+<p>参考文献</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-install.html">菜鸟教程</a><br><a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">国内镜像</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d3bd17953862">PiP Install TensorFlow 报错*** is not a supported wheel on this platform.</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lijil168/article/details/82289596">tensorflow出现 ImportError: DLL load failed: 找不到指定的程序</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/wjhua_223/article/details/105681521">解决 tensorflow-gpu 2.1 出现错误 “Could not load dynamic library ‘cudart64_101.dll’</a><br><a target="_blank" rel="noopener" href="https://cn.dll-files.com/cudart64_101.dll.html">cudart64_101.dll.html文件下载</a><br><a target="_blank" rel="noopener" href="https://blog.bitipcman.com/install-tensorflow-on-windows/">在Windows下安装Tensorflow</a></p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Machine-Learning/">Machine Learning</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Tensorflow/">Tensorflow</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Tensorflow/">Tensorflow</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/25/hexo-%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hexo 部署问题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/19/Machine-Learning-Model-Summary/">
+                        <span class="hidden-mobile">Machine Learning Model Summary</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
