@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>SystemView5.0在Win10安装过程中读条后无反应</title>
+    <link href="/2021/03/31/System-View-5-0-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98/"/>
+    <url>/2021/03/31/System-View-5-0-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p>安装了大约七八个小时都没有安装好😫</p><h2 id="安装后无反应的解决方案"><a href="#安装后无反应的解决方案" class="headerlink" title="安装后无反应的解决方案"></a>安装后无反应的解决方案</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>先说直接在WIN10 就能装的：<br>双击安装程序后，若无反应，右键任务栏，打开任务管理器，有一个32-bit setup launcher的任务，右键转到详细信息，再右键分析等待链。<br>会发现一个正在等待名为promecefpluginhost的任务进行，在详细信息中找到它，右键打开文件位置。<br>发现是wps或者office(office有没有不知道，我电脑是装的WPS)里的一个exe文件。<br>将它暂时放入回收站（如果删除时告诉你有程序正在用没法删就在任务里把它右键结束进程树），删这个文件好像要手速哈哈哈，不过我室友说可能是我设置了WPS的相关服务自启动造成的，关了自启动应该也行，或者先把安装进程树全关闭了，再删掉应该也行（我是靠手速删的），暂时将promecefpluginhost放入回收站，再运行安装程序就完美安装了<br>第一个方法安装时本人没有使用关闭杀软的操作，我用的火绒，看了别的帖子，怀疑这个promecefpluginhost可能在其他软件里也会有 ，反正根据步骤找到它的文件路径删掉他应该也可以了（因为有人说他们把后台罗技鼠标驱动关了也行了）</p><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>第二个方法就简单粗暴，装个VMware虚拟机，在XP环境里运行就可以了，我室友就用的这个方法，贴吧有人讲过这个了就不赘述，装个虚拟机也行</p><h3 id="自己总结"><a href="#自己总结" class="headerlink" title="自己总结"></a>自己总结</h3><p>这个软件太老了，一般的电脑都能安装上。但是我的电脑就是不行。<br>一般不能安装都是在双击后无反应，读条一闪而过。而我的问题是有读条，在跳到100%之后没有反应。相当于能安装，但是安装到一般就退出了。试过很多方法，帮我的同学都解决了，自己的还是不行。所以你也有和我一样的问题就没有办法只能用虚拟机了。</p><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote><p><a href="https://tieba.baidu.com/p/6763142144">systemview5.0在win10安装过程中读条后无反应的解决</a></p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>软件安装</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>VMware Workstation 无法打开内核设备</title>
+    <link href="/2021/03/31/Vmware-workstation-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E5%86%85%E6%A0%B8%E8%AE%BE%E5%A4%87/"/>
+    <url>/2021/03/31/Vmware-workstation-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E5%86%85%E6%A0%B8%E8%AE%BE%E5%A4%87/</url>
+    
+    <content type="html"><![CDATA[<h2 id="问题重述"><a href="#问题重述" class="headerlink" title="问题重述"></a>问题重述</h2><p>无法打开内核设备“\.\VMCIDev\VMX”: 系统找不到指定的文件。你想要在安装 VMware Workstation 前重启吗?</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="关闭VMCare"><a href="#关闭VMCare" class="headerlink" title="关闭VMCare"></a>关闭VMCare</h3><h3 id="进入虚拟机的安装地址，用记事本打开以-vmx结尾的文件，如下图："><a href="#进入虚拟机的安装地址，用记事本打开以-vmx结尾的文件，如下图：" class="headerlink" title="进入虚拟机的安装地址，用记事本打开以.vmx结尾的文件，如下图："></a>进入虚拟机的安装地址，用记事本打开以.vmx结尾的文件，如下图：</h3><p><img src="https://i.loli.net/2021/03/31/YcrAtWIwjzo3nMK.png" alt="屏幕截图 2021-03-31 195124.png"></p><h3 id="Crtl-F搜索vmci0-present，把后面的TRUE替换成FALSE，如下图："><a href="#Crtl-F搜索vmci0-present，把后面的TRUE替换成FALSE，如下图：" class="headerlink" title="Crtl+F搜索vmci0.present，把后面的TRUE替换成FALSE，如下图："></a>Crtl+F搜索vmci0.present，把后面的TRUE替换成FALSE，如下图：</h3><p><img src="https://img-blog.csdnimg.cn/20200627190239729.png"></p><h3 id="以管理员身份运行VMware"><a href="#以管理员身份运行VMware" class="headerlink" title="以管理员身份运行VMware"></a>以管理员身份运行VMware</h3>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>VMware</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Ubuntu Install Nvidia Driver</title>
     <link href="/2021/03/18/Ubuntu-Install-Nvidia-Driver/"/>
     <url>/2021/03/18/Ubuntu-Install-Nvidia-Driver/</url>

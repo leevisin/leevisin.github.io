@@ -20,9 +20,25 @@
   <meta name="author" content="Leevisin">
   <meta name="keywords" content="">
   
-  <title>Archives - Leevisin&#39;s Blog</title>
+  <title>SystemView5.0在Win10安装过程中读条后无反应 - Leevisin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -50,7 +66,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -149,9 +165,46 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Archive">
+            <span class="h2" id="subtitle" title="SystemView5.0在Win10安装过程中读条后无反应">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-31 19:55" pubdate>
+        March 31, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      590 words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6
+       minutes
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -164,46 +217,88 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">16 posts in total.</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/08/25/hexo-%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">hexo 部署问题</span>
-      <time style="float: right;">08-25</time>
-    </a>
-  
-    
-    <a href="/2020/08/24/Tensorflow-%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Tensorflow 安装踩坑</span>
-      <time style="float: right;">08-24</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SystemView5.0在Win10安装过程中读条后无反应</h1>
+            
+            <div class="markdown-body">
+              <p>安装了大约七八个小时都没有安装好😫</p>
+<h2 id="安装后无反应的解决方案"><a href="#安装后无反应的解决方案" class="headerlink" title="安装后无反应的解决方案"></a>安装后无反应的解决方案</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>先说直接在WIN10 就能装的：<br>双击安装程序后，若无反应，右键任务栏，打开任务管理器，有一个32-bit setup launcher的任务，右键转到详细信息，再右键分析等待链。<br>会发现一个正在等待名为promecefpluginhost的任务进行，在详细信息中找到它，右键打开文件位置。<br>发现是wps或者office(office有没有不知道，我电脑是装的WPS)里的一个exe文件。<br>将它暂时放入回收站（如果删除时告诉你有程序正在用没法删就在任务里把它右键结束进程树），删这个文件好像要手速哈哈哈，不过我室友说可能是我设置了WPS的相关服务自启动造成的，关了自启动应该也行，或者先把安装进程树全关闭了，再删掉应该也行（我是靠手速删的），暂时将promecefpluginhost放入回收站，再运行安装程序就完美安装了<br>第一个方法安装时本人没有使用关闭杀软的操作，我用的火绒，看了别的帖子，怀疑这个promecefpluginhost可能在其他软件里也会有 ，反正根据步骤找到它的文件路径删掉他应该也可以了（因为有人说他们把后台罗技鼠标驱动关了也行了）</p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>第二个方法就简单粗暴，装个VMware虚拟机，在XP环境里运行就可以了，我室友就用的这个方法，贴吧有人讲过这个了就不赘述，装个虚拟机也行</p>
+<h3 id="自己总结"><a href="#自己总结" class="headerlink" title="自己总结"></a>自己总结</h3><p>这个软件太老了，一般的电脑都能安装上。但是我的电脑就是不行。<br>一般不能安装都是在双击后无反应，读条一闪而过。而我的问题是有读条，在跳到100%之后没有反应。相当于能安装，但是安装到一般就退出了。试过很多方法，帮我的同学都解决了，自己的还是不行。所以你也有和我一样的问题就没有办法只能用虚拟机了。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/6763142144">systemview5.0在win10安装过程中读条后无反应的解决</a></p>
+</blockquote>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/31/Vmware-workstation-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E5%86%85%E6%A0%B8%E8%AE%BE%E5%A4%87/">
+                        <span class="hidden-mobile">VMware Workstation 无法打开内核设备</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -283,9 +378,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
