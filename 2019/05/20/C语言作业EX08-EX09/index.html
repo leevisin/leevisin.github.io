@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="这就是编程的颜色！">
+  
+  <meta name="author" content="Leevisin">
+  <meta name="keywords" content="">
+  
+  <title>C语言作业EX08&amp;EX09（修改一次，解决gets会吃上一个\n的问题） - Leevisin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"leevisin.github.io","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":35,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Leevisin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://i.loli.net/2021/03/18/cS3KlBTxnJoumwk.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C语言作业EX08&EX09（修改一次，解决gets会吃上一个\n的问题）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-05-20 08:58" pubdate>
+        May 20, 2019 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       minutes
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C语言作业EX08&amp;EX09（修改一次，解决gets会吃上一个\n的问题）</h1>
+            
+            <div class="markdown-body">
+              <p>这就是编程的颜色！<br><img src="https://i.loli.net/2019/05/20/5ce1fcc16727469118.png" srcset="/img/loading.gif"></p>
+<span id="more"></span>
+<h1 id="Exercise-8-Arrays"><a href="#Exercise-8-Arrays" class="headerlink" title="Exercise 8:  Arrays"></a>Exercise 8:  Arrays</h1><p>(这个太简单就不写注释了)</p>
+<ol>
+<li><p>   Write a program that reads ten numbers supplied by the user into a single subscripted array, and then prints out the average of them.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">int</span> i,j;<br>	<span class="hljs-keyword">float</span> sum=<span class="hljs-number">0</span>,num[<span class="hljs-number">10</span>];<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please Enter Ten Numbers:&quot;</span>);<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%f&quot;</span>,&amp;num[i]);<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)<br>		sum+=num[i];<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The average of them is %f&quot;</span>,sum/<span class="hljs-number">10</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>Write a program that reads ten numbers supplied by the user into a 2 by 5 array, and then prints out the maximum and minimum values held in:<br> (a) each row (2 rows)<br> (b) the whole array</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">float</span> nums[<span class="hljs-number">2</span>][<span class="hljs-number">5</span>];<br>	<span class="hljs-keyword">int</span> i,j;<br>	<span class="hljs-keyword">float</span> maxrow1=<span class="hljs-number">0</span>,minrow1=<span class="hljs-number">0</span>,maxrow2=<span class="hljs-number">0</span>,minrow2=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">2</span>;j++)<br>		<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++)<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%f&quot;</span>,&amp;nums[j][i]);<br>	maxrow1=minrow1=nums[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];<br>	maxrow2=minrow2=nums[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>];<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++)<br>	&#123;	<br>		<span class="hljs-keyword">if</span>(maxrow1&lt;nums[<span class="hljs-number">0</span>][i])<br>		maxrow1=nums[<span class="hljs-number">0</span>][i];<br>		<span class="hljs-keyword">if</span>(maxrow2&lt;nums[<span class="hljs-number">1</span>][i])<br>		maxrow2=nums[<span class="hljs-number">1</span>][i];<br>		<span class="hljs-keyword">if</span>(minrow1&gt;nums[<span class="hljs-number">0</span>][i])<br>		minrow1=nums[<span class="hljs-number">0</span>][i];<br>		<span class="hljs-keyword">if</span>(minrow2&gt;nums[<span class="hljs-number">1</span>][i])<br>		minrow2=nums[<span class="hljs-number">1</span>][i];<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The maximun and minimun of the value in row one are:&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f %f\n&quot;</span>,maxrow1,minrow1);<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The maximun and minimun of the value in row two are:&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f %f\n&quot;</span>,maxrow2,minrow2);							<span class="hljs-comment">//这个是(a)</span><br>	<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The maximum of the whole array is: &quot;</span>);<br>	<span class="hljs-keyword">if</span>(maxrow1&gt;=maxrow2)<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>,maxrow1);<br>	<span class="hljs-keyword">else</span> <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>,maxrow2);<br>	<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nThe minimum of the whole array is: &quot;</span>);<br>	<span class="hljs-keyword">if</span>(minrow1&gt;=minrow2)<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>,minrow2);<br>	<span class="hljs-keyword">else</span> <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>,minrow1);									<span class="hljs-comment">//这个是(b)</span><br>																<span class="hljs-comment">//不知道是分开写还是合着写</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<br>	<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>3．    Use a single-subscripted array to solve the following problem. Read in 20 numbers, each of which is between 10 and 100, inclusive. As each number is read, print it only if it is not a duplicate of a number already read. Prepare for the “worst case” in which all 20 numbers are different. Use the smallest possible array to solve this problem.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-keyword">int</span> i;<br><span class="hljs-keyword">int</span> nums[<span class="hljs-number">20</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">repeat</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">int</span> a=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">20</span>;i++)<br>	&#123;	<br>		<span class="hljs-keyword">do</span>&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nPlease Enter 20 integer Numbers between 10 and 100:&quot;</span>);<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;nums[i]);<br>		&#125;<span class="hljs-keyword">while</span>(nums[i]&gt;<span class="hljs-number">100</span>||nums[i]&lt;<span class="hljs-number">10</span>);<br>		a = repeat(nums[i]);<br>		<span class="hljs-keyword">if</span>(a==<span class="hljs-number">1</span>)<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,nums[i]);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>&#125;<br>	<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">repeat</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span></span>&#123;<br>	<span class="hljs-keyword">int</span> j;<br>	<span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;i;j++)<br>		&#123;<br>			<span class="hljs-keyword">if</span>(num==nums[j])<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		&#125;	<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="Exercise-9-More-Arrays-–-String"><a href="#Exercise-9-More-Arrays-–-String" class="headerlink" title="Exercise 9:  More Arrays – String"></a>Exercise 9:  More Arrays – String</h1><ol>
+<li>   Write a program that enters 5 names of towns and their respective distance (an integer) from London in miles. The program will print of the names of the towns that are less than 100 miles from London. Use arrays and character strings to implement your program.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">less100</span><span class="hljs-params">(<span class="hljs-keyword">int</span> miles)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">char</span> name[<span class="hljs-number">10000</span>];<br>	<span class="hljs-keyword">int</span> distance[<span class="hljs-number">5</span>];<br>	<span class="hljs-keyword">int</span> i,a=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++)<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please Enter Name And Distance From London Respectively: &quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s %d&quot;</span>,&amp;name,&amp;distance[i]);<br>			a = less100(distance[i]);<br>			<span class="hljs-keyword">if</span> (a == <span class="hljs-number">1</span>)<br>				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n%s is less than 100 miles from London\n\n&quot;</span>,name);<br>		&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">less100</span><span class="hljs-params">(<span class="hljs-keyword">int</span> miles)</span></span>&#123;<br>	<span class="hljs-keyword">if</span> (miles &lt; <span class="hljs-number">100</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-comment">//如果城镇中有空格的存在，这个可以读取，但是上一个不行</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">less100</span><span class="hljs-params">(<span class="hljs-keyword">int</span> miles)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">char</span> name[<span class="hljs-number">10000</span>];<br>	<span class="hljs-keyword">int</span> distance[<span class="hljs-number">5</span>];<br>	<span class="hljs-keyword">int</span> i,a=<span class="hljs-number">0</span>;<br><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">5</span>;i++)<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please Enter Name : &quot;</span>);<br>			gets(name);<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>			fflush(<span class="hljs-built_in">stdin</span>);   <span class="hljs-comment">//清空缓冲区</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please Enter The Distance From London : &quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;distance[i]);<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>			fflush(<span class="hljs-built_in">stdin</span>);   <span class="hljs-comment">//清空缓冲区</span><br>			a = less100(distance[i]);<br>			<span class="hljs-keyword">if</span> (a == <span class="hljs-number">1</span>)<br>				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n\n&quot;</span>,name);<br>		&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">less100</span><span class="hljs-params">(<span class="hljs-keyword">int</span> miles)</span></span>&#123;<br>	<span class="hljs-keyword">if</span> (miles &lt; <span class="hljs-number">100</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>   Write a program that prompts the user to type in four character strings, places these in an array of strings, and then prints out: (e.g. I am Peter Pan)</li>
+</ol>
+<pre><code>(i) The four strings in reverse order. (e.g. Pan Peter am I)
+</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">char</span> strings1[<span class="hljs-number">100</span>],strings2[<span class="hljs-number">100</span>],strings3[<span class="hljs-number">100</span>],strings4[<span class="hljs-number">100</span>];<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please type in four character strings\n&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s %s %s %s&quot;</span>,&amp;strings1,&amp;strings2,&amp;strings3,&amp;strings4);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s %s %s %s\n&quot;</span>,strings4,strings3,strings2,strings1);<br><br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<pre><code>(ii) The four strings in the original order, but with each string backwards. (e.g. I ma reteP naP)
+</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-comment">//取长度的函数strlen需要用到这个头文件</span><br><span class="hljs-function"><span class="hljs-keyword">char</span> *<span class="hljs-title">rev</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *<span class="hljs-built_in">string</span>)</span></span>;<br><span class="hljs-keyword">char</span> result[<span class="hljs-number">100</span>];<span class="hljs-comment">//定义result为全局变量</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">int</span> i;<br>	<span class="hljs-keyword">char</span> <span class="hljs-built_in">string</span>[<span class="hljs-number">100</span>];<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please type in four character strings\n&quot;</span>);<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">4</span>;i++)<br>	&#123;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;<span class="hljs-built_in">string</span>);<br>		rev(<span class="hljs-built_in">string</span>);<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s &quot;</span>,result);<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125; <br><br><span class="hljs-function"><span class="hljs-keyword">char</span> *<span class="hljs-title">rev</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *str)</span></span>&#123;<br><span class="hljs-comment">//注意定义为地址，用指针回传，但是要回传一次就输出，无法储存后再整体输出</span><br>	<span class="hljs-keyword">int</span> len,i;<br>	len = <span class="hljs-built_in">strlen</span>(str);<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;len;i++)<br>		result[i]=str[len-i<span class="hljs-number">-1</span>];<br>	result[i]=<span class="hljs-string">&#x27;\0&#x27;</span>;<br>	<span class="hljs-keyword">return</span> result;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<pre><code>(iii) The four strings in reverse order with each string backwards. (e.g. naP reteP ma I)
+</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-comment">//这个写的有点啰嗦</span><br><span class="hljs-function"><span class="hljs-keyword">char</span> *<span class="hljs-title">rev</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *<span class="hljs-built_in">string</span>)</span></span>;<br><span class="hljs-keyword">char</span> result[<span class="hljs-number">100</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">int</span> i;<br>	<span class="hljs-keyword">char</span> string1[<span class="hljs-number">100</span>],string2[<span class="hljs-number">100</span>],string3[<span class="hljs-number">100</span>],string4[<span class="hljs-number">100</span>];<br>	<span class="hljs-keyword">char</span> *a,*b,*c,*d;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please type in four character strings\n&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s %s %s %s&quot;</span>,&amp;string1,&amp;string2,&amp;string3,&amp;string4);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s &quot;</span>,rev(string4));<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s &quot;</span>,rev(string3));<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s &quot;</span>,rev(string2));<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>,rev(string1));<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125; <br><br><span class="hljs-function"><span class="hljs-keyword">char</span>* <span class="hljs-title">rev</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* str)</span></span>&#123;<br>	<span class="hljs-keyword">int</span> len,i;<br>	len = <span class="hljs-built_in">strlen</span>(str);<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;len;i++)<br>		result[i]=str[len-i<span class="hljs-number">-1</span>];<br>	result[i]=<span class="hljs-string">&#x27;\0&#x27;</span>;<br>	<span class="hljs-keyword">return</span> result;<br><br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-comment">//这个我比较喜欢</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">char</span> result[<span class="hljs-number">100</span>],str[<span class="hljs-number">100</span>];<br>	<span class="hljs-keyword">int</span> len,i;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please type in four character strings :&quot;</span>);<br>	gets(str);<br>	len = <span class="hljs-built_in">strlen</span>(str);<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;len;i++)<br>		result[i]=str[len-i<span class="hljs-number">-1</span>];<br>	result[i]=<span class="hljs-string">&#x27;\0&#x27;</span>;<br>	<span class="hljs-built_in">puts</span>(result);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/C%E8%AF%AD%E8%A8%80%E4%BD%9C%E4%B8%9A/">C语言作业</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C%E8%AF%AD%E8%A8%80%E4%BD%9C%E4%B8%9A/">C语言作业</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/27/EX10/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Exercise 10:Pointers（修改一次）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/05/11/%E2%80%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%99%E5%8D%9A%E5%AE%A2%E2%80%9D/">
+                        <span class="hidden-mobile">为什么写博客及本人随笔</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
