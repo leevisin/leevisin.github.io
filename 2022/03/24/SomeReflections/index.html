@@ -15,12 +15,12 @@
   
   <meta name="theme-color" content="#2f4154">
   
-    <meta name="description" content="">
+    <meta name="description" content="感觉好像好久没有写博客了，感觉最近还是有一些想说的，不知道从哪里说起，就随便说说吧。希望别以后看到现在写的东西又有删了的心，哈哈哈哈哈。">
   
   <meta name="author" content="Leevisin">
   <meta name="keywords" content="">
   
-  <title>Java Interface Usage - Leevisin&#39;s Blog</title>
+  <title>一些随想 - Leevisin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -160,12 +160,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fjavajgs.com%2Fwp-content%2Fuploads%2F2019%2F11%2Fimg_5ddaa3b42b47d-1000x500.jpg&refer=http%3A%2F%2Fjavajgs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1638377857&t=60ba118acc5df3211ad67f19581ad8da') no-repeat center center;
+         style="background: url('https://s2.loli.net/2022/03/24/FRMQvmjrGVPptOg.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Java Interface Usage">
+            <span class="h2" id="subtitle" title="一些随想">
               
             </span>
 
@@ -175,8 +175,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-17 17:32" pubdate>
-        June 17, 2021 pm
+      <time datetime="2022-03-24 11:41" pubdate>
+        March 24, 2022 am
       </time>
     </span>
   
@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      784 words
+      1.5k words
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      15
        minutes
     </span>
   
@@ -227,51 +227,27 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java Interface Usage</h1>
+            <h1 style="display: none">一些随想</h1>
             
             <div class="markdown-body">
-              <p>接口的作用对于很多新手来说很不容易理解，我给大家举个例子。<br>接口只是一个规范，所以里面的方法都是空的。<br>假如我开了一个宠物粮店，声明所有宠物都可以来我这里买粮食，这就相当于一个接口，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">PetRestaurant</span> </span>&#123; <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buy</span><span class="hljs-params">()</span></span>;&#125;<br></code></pre></td></tr></table></figure>
-
-<p>当一只狗看到了，知道自己是宠物，所以它去实现这个接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DogPet</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PetRestaurant</span> </span>&#123; <br>	<span class="hljs-meta">@Override</span> <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buy</span><span class="hljs-params">()</span> </span>&#123;  <br>		System.out.println(<span class="hljs-string">&quot;我是狗，我要买狗粮&quot;</span>); <br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>当一只猫看到了，知道自己也是宠物，所以也去实现这个接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CatPet</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PetRestaurant</span> </span>&#123; <br>	<span class="hljs-meta">@Override</span> <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buy</span><span class="hljs-params">()</span> </span>&#123;  <br>		System.out.println(<span class="hljs-string">&quot;我是猫，我要买猫粮&quot;</span>); <br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <p>感觉好像好久没有写博客了，感觉最近还是有一些想说的，不知道从哪里说起，就随便说说吧。<br>希望别以后看到现在写的东西又有删了的心，哈哈哈哈哈。</p>
+<span id="more"></span>
 
 
-<p>当狗和猫来我的店之前，我是不知道他们到底是什么，但是当他们来到我的店，我就知道一个要猫粮食，一个要狗粮食。因为他们都实现了 我这个接口，都可以买。下面这个类相当于一个接待顾客的类，即店小二，他接待所有实现了我这个宠物店接口的动物，传进来一个PetRestaurant 类型的宠物，注意，这个PetRestaurant 是接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span> </span>&#123; <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buy</span><span class="hljs-params">(PetRestaurant pet)</span> </span>&#123;  pet.buy(); &#125;&#125;<br></code></pre></td></tr></table></figure>
-
-<p>好了，这个时候我这个老板出现了，我可以给他们卖粮食了，相当于测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tests</span> </span>&#123; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;  <br>		PetRestaurant dog = <span class="hljs-keyword">new</span> DogPet();  <span class="hljs-comment">//实例化一个狗，相当于把狗顾客实例化  </span><br>		PetRestaurant cat = <span class="hljs-keyword">new</span> CatPet();<span class="hljs-comment">//实例化一个猫，相当于把猫顾客实例化    </span><br>		test t = <span class="hljs-keyword">new</span> test();  <span class="hljs-comment">//实例化一个店小二  </span><br>		t.buy(cat);  <span class="hljs-comment">//把猫交给店小二  </span><br>		t.buy(dog); <span class="hljs-comment">//把狗交给店小二 &#125;</span><br>	&#125;<br></code></pre></td></tr></table></figure>
-
-
-<p>这样运行的结果就是<br>我是猫，我要买猫粮<br>我是狗，我要买狗粮</p>
-<p>你知道吗，整个过程我这个店主其实根本不知道来的到底是猫是狗还是其他什么，我只要有一个店小二，把这些来的不知什么动物都全部交给店小二，店小二就知道怎么去卖了，因为这些狗啊猫啊都实现了我这个宠物店的接口，而店小二就负责接待所有实现了我这个接口的动物。这就有一个好处，假如明天来了一头小猪，只要它实现了我这个接口，我只管交给店小二处理就OK了，我这个店小二根本不需要变化，我这个店主也只需要实例化一下这个动物就OK</p>
-<p>你想，假如没有接口，会怎么办，来一个猫，我要去创造一个猫，还要实例化，来一只狗，我要创建一只狗，同样要实例化，还要配备专门的店小二去接待，就会相当麻烦</p>
-<p>作者：知乎用户<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20111251/answer/14760353">https://www.zhihu.com/question/20111251/answer/14760353</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20111251/answer/14760353">Java 中的接口有什么作用</a></p>
-</blockquote>
+<h1 id="罗翔老师至理名言"><a href="#罗翔老师至理名言" class="headerlink" title="罗翔老师至理名言"></a>罗翔老师至理名言</h1><p><code>对于可控的事情保持谨慎，对于不可控的事情要保持乐观，人只能做自己能力范围内的事，你要接受这个事实，并且以乐观的心去应对这一切。</code><p align="right">——罗翔</p><br>&emsp;&emsp;我感觉这句话说的真的特别好，我觉得这句话主要分为三个部分。<br>&emsp;&emsp;第一个部分就是对于确定的事情，也就是我们可以把握住的部分，但是这部分在现实中占的比例很小，却也是我们能做的事情。我们要保持谨慎，就是要做到万无一失，不出现意外的情况，从而达到我们自己想要的目标和目的。虽然可能是简简单单的，但是真正做成却还是跟想象中的过程有些不同，也许会有一些曲折。可以说没有一件事做成是容易的。<br>&emsp;&emsp;第二部分就是对于不确定的事情，就是我们无能为力的部分，我们要保持乐观。其实大部分的事情我们都是无能为力无法改变的，最直接的就是环境，或者有些事情就是很难说，很多事情只有到了特定的时间才能去处理和解决，我们很多情况下没有办法提前做准备。现实也是不确定的事情居多，但是我们要对这些事情保持乐观，从自身角度出发，以一个期待着事情朝着好的方向看事情和问题，事情才会更好的向好的事情发展。很多我个人的经历告诉我，其实很多事情并没有我想象的那么糟糕，只不过是自己脑子中想太多，担心很多事情导致自己对事情有了坏的预估。我其实是很想把事情考虑全面的，就是考虑事情的时候会考虑到事情最坏的情况，然后让自己去尝试接受这最坏的情况，以便等到事情真的坏到我想象的地步时，我心里也有预期可以接受，而不是突然一下接受不了现实。但事实往往是根本没我想象的那么糟糕，大部分时间都是在庸人自扰，我给自己的建议是，<font color="red">只对自己看到和观察到的事情做出判断，对于没有看到和观察到的事情就判断为没有发生。自己表达出来的想法要和自己内心的想法高度一致，并且相信别人也是如此。如果有什么不确定的事情就去问一问，避免自身内耗。</font>这样就不会对事情的发展判断做出不符合当下的评价，然后自己的心态就能保持平和，从而乐观的去面对不可控的事情。<br>&emsp;&emsp;第三部分其实说的是自己部分可控的事情，我们应对的态度应该是认识到自己只能做自己能力范围内的事情，并且以积极乐观的心态去面对。其实这样的事情也很多，感觉大部分我们处理的事情其实都是这一类的事情，比如说我们做一个项目答辩，去处理人际关系等等。很多时候并不是我们自己努力就能够办到的，这个需要我们自己的努力，也需要别人的配合，或者说存在一部分别的影响因素。这个时候就很容易出现强求的心态，不要这样，不要这样，不要这样，强求只会让自己痛苦，记住人只能做自己能力范围内的事情。我们做事情要考虑到天时地利人和，在自己做事情的时候划分出这部分事情中哪些部分可控，哪些部分不可控，然后我们把我们可控的部分做到最好，对于不可控的事情我们保持乐观就可以了。其实在我们把我们自己可控的部分做好之后，其他的就不重要了，至于结果就顺其自然就可以了，我觉得这样也就够了。<br>&emsp;&emsp;关于天时地利人和我觉得这个是很重要的一个评价标准，我想多说两句哈哈哈。举个例子吧，为什么说之前北邮特别好呢？天时，之前赶上通信发展和互联网两拨浪潮，那个时候大家都去运营商和互联网，两个行业都是很挣钱的行业，之后运营商稍微下滑了之后大家才去的互联网。所以说正赶上时代的发展，恰巧北邮最强的也是这两个学科，通信和计算机嘛。地利，就是北邮在北京嘛，然后北京的运营商和互联网企业也很多，就是实习什么的很方便的都，之后就业大家也都是在北京，所以机会的话就会好很多。人和，学校的学长学姐都跑到互联网去了，你再去找工作会发现面试官五个人里面三个北邮的，这不要你要谁，这本来就会有同校好感的，如果你实力再强一些那不是十拿九稳？<br>&emsp;&emsp;以下是一个关于学校的帖子，我觉得说的很在理，可能可以解决大家一部分困惑。</p>
+<p><img src="https://s2.loli.net/2022/03/24/my2G3F1e8AhBkow.jpg" srcset="/img/loading.gif"><br>&emsp;&emsp;想说的大概就这些吧，每当我遇到事情的时候我都会想起这句话，然后我的内心就能回归平静，从而用平和的心态去面对一切可能发生的问题。</p>
+<p><img src="https://s2.loli.net/2022/03/24/Y4ymIB7GFSWKpJ8.jpg" srcset="/img/loading.gif"></p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9A%8F%E6%83%B3/">随想</a>
                     
                   </div>
                 
@@ -288,18 +264,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/24/SomeReflections/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">一些随想</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/01/PyTorch%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/">
-                        <span class="hidden-mobile">PyTorch入门学习</span>
+                      <a href="/2021/06/17/Java-Interface-Usage/">
+                        <span class="hidden-mobile">Java Interface Usage</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
