@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Python-Download-Package</title>
+    <link href="/2022/04/18/Python-Download-Package/"/>
+    <url>/2022/04/18/Python-Download-Package/</url>
+    
+    <content type="html"><![CDATA[<p><strong>Problem: Python 报错 Could not find a version that satisfies the requirement (from versions: ) No matching dist</strong></p><span id="more"></span><p>Solution: <code>pip install XXX -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com</code></p><p>or Solution: <code>python -m pip install --upgrade pip</code></p><blockquote><p><a href="https://blog.csdn.net/sinat_26811377/article/details/107669138">Python 报错 Could not find a version that satisfies the requirement (from versions: ) No matching dist</a></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Tools</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>Tools</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>一些随想</title>
     <link href="/2022/03/24/SomeReflections/"/>
     <url>/2022/03/24/SomeReflections/</url>
@@ -59,6 +86,8 @@
     <tags>
       
       <tag>PyTorch</tag>
+      
+      <tag>Python</tag>
       
     </tags>
     
@@ -185,12 +214,18 @@
       
       <category>Machine Learning</category>
       
+      <category>Tools</category>
+      
       <category>Tensorflow</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>Tools</tag>
       
       <tag>Tensorflow</tag>
       
@@ -562,10 +597,14 @@
       
       <category>推荐</category>
       
+      <category>Tools</category>
+      
     </categories>
     
     
     <tags>
+      
+      <tag>Tools</tag>
       
       <tag>推荐</tag>
       
